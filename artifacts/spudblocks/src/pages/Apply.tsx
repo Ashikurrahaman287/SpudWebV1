@@ -11,7 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { CheckCircle2, Lock } from "lucide-react";
-import { addContact } from "@/lib/storage";
+import { useContacts } from "@/contexts/ContactsContext";
 
 const formSchema = z.object({
   fullName: z.string().min(2, "Name is required"),
@@ -38,6 +38,7 @@ type FormValues = z.infer<typeof formSchema>;
 export default function Apply() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const { addContact } = useContacts();
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),

@@ -1,7 +1,7 @@
 import { getCases } from "@/lib/storage";
 import { getInsights } from "@/lib/storage";
 import { getOurSpace } from "@/lib/storage";
-import { getContacts } from "@/lib/storage";
+import { useContacts } from "@/contexts/ContactsContext";
 import { BookOpen, FileText, Image, MessageSquare, AlertCircle } from "lucide-react";
 import { Link } from "wouter";
 
@@ -9,7 +9,7 @@ export default function AdminDashboard() {
   const cases = getCases();
   const insights = getInsights();
   const ourSpace = getOurSpace();
-  const contacts = getContacts();
+  const { contacts } = useContacts();
   const newContacts = contacts.filter((c) => c.status === "new").length;
 
   const stats = [

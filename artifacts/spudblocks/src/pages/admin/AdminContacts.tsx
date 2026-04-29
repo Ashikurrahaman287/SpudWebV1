@@ -1,5 +1,6 @@
-import { useState, useEffect, useCallback } from "react";
-import { getContacts, updateContactStatus, deleteContact, ContactSubmission } from "@/lib/storage";
+import { useState } from "react";
+import { useContacts } from "@/contexts/ContactsContext";
+import { type ContactSubmission } from "@/lib/storage";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -27,26 +28,11 @@ function exportCSV(contacts: ContactSubmission[]) {
 }
 
 export default function AdminContacts() {
-  const [contacts, setContacts] = useState<ContactSubmission[]>([]);
+  const { contacts, updateContactStatus, deleteContact, refresh } = useContacts();
   const [query, setQuery] = useState("");
   const [filterStatus, setFilterStatus] = useState<string>("all");
   const [confirmDelete, setConfirmDelete] = useState<string | null>(null);
   const [expanded, setExpanded] = useState<string | null>(null);
-
-  const refresh = useCallback(() => {
-    setContacts(getContacts());
-  }, []);
-
-  // Read fresh on mount and whenever the tab regains focus
-  useEffect(() => {
-    refresh();
-    const handleFocus = () => refresh();
-    window.addEventListener("focus", handleFocus);
-    document.addEventListener("visibilitychange", () => {
-      if (!document.hidden) refresh();
-    });
-    return () => window.removeEventListener("focus", handleFocus);
-  }, [refresh]);
 
   const filtered = contacts.filter((c) => {
     const matchesQuery =
@@ -58,12 +44,10 @@ export default function AdminContacts() {
 
   const handleStatusChange = (id: string, status: ContactSubmission["status"]) => {
     updateContactStatus(id, status);
-    setContacts(getContacts());
   };
 
   const handleDelete = (id: string) => {
     deleteContact(id);
-    setContacts(getContacts());
     setConfirmDelete(null);
   };
 

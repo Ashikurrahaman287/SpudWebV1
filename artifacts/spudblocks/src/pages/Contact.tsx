@@ -8,7 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { CheckCircle2, MessageSquare } from "lucide-react";
-import { addContact } from "@/lib/storage";
+import { useContacts } from "@/contexts/ContactsContext";
 import { Link } from "wouter";
 
 const schema = z.object({
@@ -23,6 +23,7 @@ type FormValues = z.infer<typeof schema>;
 export default function Contact() {
   const [success, setSuccess] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const { addContact } = useContacts();
 
   const form = useForm<FormValues>({
     resolver: zodResolver(schema),

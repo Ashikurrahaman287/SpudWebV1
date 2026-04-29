@@ -5,6 +5,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { Layout } from "@/components/layout/Layout";
 import { AdminProvider } from "@/contexts/AdminContext";
 import { useAdmin } from "@/contexts/AdminContext";
+import { ContactsProvider } from "@/contexts/ContactsContext";
 import { useEffect } from "react";
 
 // Public pages
@@ -166,12 +167,14 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <AdminProvider>
+        <ContactsProvider>
         <TooltipProvider>
           <WouterRouter base={import.meta.env.BASE_URL.replace(/\/$/, "")}>
             <Router />
           </WouterRouter>
           <Toaster />
         </TooltipProvider>
+        </ContactsProvider>
       </AdminProvider>
     </QueryClientProvider>
   );
