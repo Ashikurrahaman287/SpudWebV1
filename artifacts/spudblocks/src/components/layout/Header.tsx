@@ -28,8 +28,8 @@ export function Header() {
         
         <nav className="hidden md:flex items-center gap-8 text-sm font-medium">
           <div className="relative group">
-            <Link href="/solutions" className="hover:text-primary transition-colors py-2 block">
-              Solutions
+            <Link href="/services" className="hover:text-primary transition-colors py-2 block">
+              Services
             </Link>
             <div className="absolute top-full left-0 w-48 bg-card border border-border p-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
               <Link href="/solutions/launch-system" className="block px-3 py-2 hover:bg-muted text-sm">Launch System</Link>
@@ -37,12 +37,12 @@ export function Header() {
               <Link href="/solutions/exchange-readiness" className="block px-3 py-2 hover:bg-muted text-sm">Exchange Readiness</Link>
             </div>
           </div>
-          <Link href="/work" className="hover:text-primary transition-colors">Work</Link>
+          <Link href="/case-studies" className="hover:text-primary transition-colors">Case Studies</Link>
+          <Link href="/blog" className="hover:text-primary transition-colors">Blog</Link>
           <Link href="/who-we-serve" className="hover:text-primary transition-colors">Who We Serve</Link>
           <Link href="/method" className="hover:text-primary transition-colors">Method</Link>
-          <Link href="/insights" className="hover:text-primary transition-colors">Insights</Link>
           <Link href="/about" className="hover:text-primary transition-colors">About</Link>
-          <Link href="/our-space" className="hover:text-primary transition-colors">Our Space</Link>
+          <Link href="/contact" className="hover:text-primary transition-colors">Contact</Link>
         </nav>
 
         <div className="hidden md:flex items-center gap-4">
@@ -58,16 +58,17 @@ export function Header() {
 
       {isOpen && (
         <div className="md:hidden absolute top-16 left-0 right-0 bg-card border-b border-border p-4 flex flex-col gap-4">
-          <Link href="/solutions" className="px-2 py-2 hover:bg-muted font-medium">Solutions</Link>
+          <Link href="/services" className="px-2 py-2 hover:bg-muted font-medium">Services</Link>
           <Link href="/solutions/launch-system" className="px-6 py-1 text-sm text-muted-foreground hover:text-primary">Launch System</Link>
           <Link href="/solutions/growth-engine" className="px-6 py-1 text-sm text-muted-foreground hover:text-primary">Growth Engine</Link>
           <Link href="/solutions/exchange-readiness" className="px-6 py-1 text-sm text-muted-foreground hover:text-primary">Exchange Readiness</Link>
-          <Link href="/work" className="px-2 py-2 hover:bg-muted font-medium">Work</Link>
+          <Link href="/case-studies" className="px-2 py-2 hover:bg-muted font-medium">Case Studies</Link>
+          <Link href="/blog" className="px-2 py-2 hover:bg-muted font-medium">Blog</Link>
           <Link href="/who-we-serve" className="px-2 py-2 hover:bg-muted font-medium">Who We Serve</Link>
           <Link href="/method" className="px-2 py-2 hover:bg-muted font-medium">Method</Link>
-          <Link href="/insights" className="px-2 py-2 hover:bg-muted font-medium">Insights</Link>
           <Link href="/about" className="px-2 py-2 hover:bg-muted font-medium">About</Link>
           <Link href="/our-space" className="px-2 py-2 hover:bg-muted font-medium">Our Space</Link>
+          <Link href="/contact" className="px-2 py-2 hover:bg-muted font-medium">Contact</Link>
           <Button asChild className="mt-4 w-full">
             <Link href="/apply">Apply Now</Link>
           </Button>

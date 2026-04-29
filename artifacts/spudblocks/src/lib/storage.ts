@@ -17,9 +17,57 @@ export type ContactSubmission = {
   name: string;
   email: string;
   phone: string;
+  telegram: string;
+  company: string;
+  website: string;
+  stage: string;
+  budget: string;
   message: string;
   submittedAt: string;
-  status: "new" | "contacted" | "closed";
+  status: "new" | "contacted" | "qualified" | "closed" | "rejected";
+};
+
+export type BlogPost = {
+  id: string;
+  slug: string;
+  title: string;
+  category: string;
+  tags: string[];
+  content: string;
+  featuredImage: string;
+  metaTitle: string;
+  metaDescription: string;
+  status: "draft" | "published";
+  createdAt: string;
+  updatedAt: string;
+};
+
+export type WebsiteContent = {
+  heroHeadline: string;
+  heroSubheadline: string;
+  metricsProjects: string;
+  metricsCommunity: string;
+  metricsPartners: string;
+  metricsExperience: string;
+  systemStep1Title: string;
+  systemStep1Desc: string;
+  systemStep2Title: string;
+  systemStep2Desc: string;
+  systemStep3Title: string;
+  systemStep3Desc: string;
+  systemStep4Title: string;
+  systemStep4Desc: string;
+  systemStep5Title: string;
+  systemStep5Desc: string;
+  systemStep6Title: string;
+  systemStep6Desc: string;
+};
+
+export type MediaItem = {
+  id: string;
+  url: string;
+  name: string;
+  createdAt: string;
 };
 
 export type SEOSettings = {
@@ -33,9 +81,12 @@ export type SEOSettings = {
 const KEYS = {
   cases: "sb_cases",
   insights: "sb_insights",
+  blogPosts: "sb_blog_posts",
   ourSpace: "sb_our_space",
   contacts: "sb_contacts",
   seo: "sb_seo",
+  websiteContent: "sb_website_content",
+  mediaLibrary: "sb_media_library",
   adminSession: "sb_admin_session",
 };
 
@@ -97,6 +148,30 @@ export function saveInsight(insight: Insight): void {
 }
 export function deleteInsight(slug: string): void {
   saveInsights(getInsights().filter((i) => i.slug !== slug));
+}
+
+// Blog Posts
+export function getBlogPosts(): BlogPost[] {
+  return readJSON(KEYS.blogPosts, []);
+}
+export function saveBlogPosts(posts: BlogPost[]): void {
+  writeJSON(KEYS.blogPosts, posts);
+}
+export function getBlogPostBySlug(slug: string): BlogPost | undefined {
+  return getBlogPosts().find((p) => p.slug === slug);
+}
+export function saveBlogPost(post: BlogPost): void {
+  const all = getBlogPosts();
+  const idx = all.findIndex((x) => x.slug === post.slug);
+  if (idx >= 0) {
+    all[idx] = { ...post, updatedAt: new Date().toISOString() };
+  } else {
+    all.push({ ...post, createdAt: new Date().toISOString(), updatedAt: new Date().toISOString() });
+  }
+  saveBlogPosts(all);
+}
+export function deleteBlogPost(slug: string): void {
+  saveBlogPosts(getBlogPosts().filter((p) => p.slug !== slug));
 }
 
 // Our Space
@@ -162,6 +237,51 @@ export function getSEO(): SEOSettings {
 }
 export function saveSEO(seo: SEOSettings): void {
   writeJSON(KEYS.seo, seo);
+}
+
+// Website Content
+const defaultWebsiteContent: WebsiteContent = {
+  heroHeadline: "We Launch, Grow, and List Web3 Projects.",
+  heroSubheadline: "SpudBlocks helps token-based projects move from idea to product, users, liquidity, and exchange readiness through one integrated launch infrastructure system.",
+  metricsProjects: "100+",
+  metricsCommunity: "50M+",
+  metricsPartners: "25+",
+  metricsExperience: "7+",
+  systemStep1Title: "Discover",
+  systemStep1Desc: "Analyze the project, market, token model, and launch readiness.",
+  systemStep2Title: "Build",
+  systemStep2Desc: "Develop websites, DApps, SaaS tools, smart contract systems, and launch assets.",
+  systemStep3Title: "Launch",
+  systemStep3Desc: "Structure the TGE, campaigns, community activation, and go-to-market.",
+  systemStep4Title: "Grow",
+  systemStep4Desc: "Drive community, KOL alignment, content, and user acquisition.",
+  systemStep5Title: "Liquidity",
+  systemStep5Desc: "Prepare liquidity strategy, market making coordination, and launch stability.",
+  systemStep6Title: "Exchange",
+  systemStep6Desc: "Guide projects toward exchange readiness and listing pathways.",
+};
+export function getWebsiteContent(): WebsiteContent {
+  return readJSON(KEYS.websiteContent, defaultWebsiteContent);
+}
+export function saveWebsiteContent(content: WebsiteContent): void {
+  writeJSON(KEYS.websiteContent, content);
+}
+
+// Media Library
+export function getMediaLibrary(): MediaItem[] {
+  return readJSON(KEYS.mediaLibrary, []);
+}
+export function addMediaItem(item: Omit<MediaItem, "id" | "createdAt">): void {
+  const all = getMediaLibrary();
+  all.unshift({
+    ...item,
+    id: Date.now().toString(),
+    createdAt: new Date().toISOString(),
+  });
+  writeJSON(KEYS.mediaLibrary, all);
+}
+export function deleteMediaItem(id: string): void {
+  writeJSON(KEYS.mediaLibrary, getMediaLibrary().filter(m => m.id !== id));
 }
 
 // Admin session

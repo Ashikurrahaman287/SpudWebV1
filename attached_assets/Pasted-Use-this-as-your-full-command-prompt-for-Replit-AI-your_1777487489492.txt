@@ -1,0 +1,380 @@
+Use this as your **full command prompt** for Replit AI / your developer.
+
+```text
+Upgrade the SpudBlocks website to a premium 10/10 Web3 infrastructure company website.
+
+Brand Position:
+SpudBlocks is not a normal Web3 agency. It is a Token Launch, Growth, Liquidity, and Exchange Pathway Infrastructure company.
+
+Core message:
+“We Launch, Grow, and List Web3 Projects.”
+Sub-message:
+“From Idea → Product → Users → Liquidity → Exchange.”
+
+Use dark Web3 theme with SpudBlocks blue-purple gradient:
+Primary gradient: #3498DB → #4A73E0 → #7B2CF5
+Background: #000000 / #05070F
+Text: #FFFFFF / #B8C2D6
+Accent: #00C2FF and #7B2CF5
+
+Now implement the following upgrades:
+```
+
+## 1. Hero Section Command
+
+```text
+Replace the homepage hero section with a stronger premium hero.
+
+Hero content:
+Headline:
+“We Launch, Grow, and List Web3 Projects.”
+
+Subheadline:
+“SpudBlocks helps token-based projects move from idea to product, users, liquidity, and exchange readiness through one integrated launch infrastructure system.”
+
+CTA buttons:
+Primary: “Apply for Launch”
+Secondary: “Explore Our System”
+
+Add a visual pipeline under the hero:
+Idea → Build → Launch → Grow → Liquidity → Exchange
+
+Add animated glowing gradient background, floating blockchain particles, and subtle scroll animation.
+Keep it professional, not too flashy.
+```
+
+## 2. Add “0 → Exchange System” Section
+
+```text
+Create a new section after the hero called “The 0 → Exchange System”.
+
+Show 6 steps as premium cards:
+
+1. Discover
+Description: We analyze the project, market, token model, and launch readiness.
+
+2. Build
+Description: We develop websites, DApps, SaaS tools, smart contract systems, and launch assets.
+
+3. Launch
+Description: We structure the TGE, campaigns, community activation, and go-to-market plan.
+
+4. Grow
+Description: We drive community, KOL alignment, content, and user acquisition.
+
+5. Liquidity
+Description: We prepare liquidity strategy, market making coordination, and launch stability.
+
+6. Exchange
+Description: We guide projects toward exchange readiness and listing pathways.
+
+Design:
+Use timeline/pipeline layout.
+Each card should have icons, hover glow, and smooth animation.
+```
+
+## 3. Services Section Upgrade
+
+```text
+Rewrite and redesign the Services section.
+
+Main title:
+“Integrated Infrastructure for Web3 Launches”
+
+Add 4 core service cards:
+
+1. Token Launch Infrastructure
+Includes:
+- Token launch planning
+- Tokenomics support
+- TGE preparation
+- Launch strategy
+
+2. Web3 Product Development
+Includes:
+- DApps
+- Web3 websites
+- SaaS platforms
+- Smart contract systems
+- Dashboards
+
+3. Growth & Market Entry
+Includes:
+- Community growth
+- KOL campaigns
+- Airdrop strategy
+- User acquisition
+- Narrative positioning
+
+4. Liquidity & Exchange Pathway
+Includes:
+- Exchange readiness
+- Liquidity planning
+- Market maker coordination
+- Listing preparation
+- Post-launch support
+
+Make cards premium with gradient borders, glassmorphism, hover animation, and clear CTA.
+```
+
+## 4. Add Trust / Metrics Section
+
+```text
+Add a premium metrics section.
+
+Title:
+“Built for Serious Web3 Founders”
+
+Add these counters:
+- 100+ Projects Supported
+- 50M+ Community Reach Potential
+- 25+ Strategic Market Partners
+- 7+ Years Web3 Execution Experience
+
+Important:
+If exact numbers are not verified, add small note:
+“Figures represent internal experience, ecosystem reach, and strategic execution capacity.”
+
+Use animated number counters.
+```
+
+## 5. Case Studies Section
+
+```text
+Create a Case Studies section connected to Admin Panel.
+
+Title:
+“Case Studies & Launch Stories”
+
+Each case study card must show:
+- Project name
+- Category
+- Problem
+- Solution
+- Result
+- Tags
+- Image/banner
+- “View Case Study” button
+
+Add sample placeholder case studies:
+1. Token Launch Preparation
+2. Web3 Growth Campaign
+3. DApp Product Build
+
+Make it dynamic so admin can add, edit, delete case studies from dashboard.
+```
+
+## 6. Admin Panel Full CMS Command
+
+```text
+Create a secure Admin Panel for SpudBlocks.
+
+Admin features:
+1. Login authentication
+2. Dashboard overview
+3. Edit homepage content
+4. Edit services content
+5. Create/edit/delete case studies
+6. Create/edit/delete blog posts
+7. Create/edit/delete Our Space posters
+8. View contact form submissions
+9. Manage SEO title, description, keywords
+10. Upload images/banners
+
+Admin sidebar:
+- Dashboard
+- Website Content
+- Case Studies
+- Blog Posts
+- Our Space
+- Contact Leads
+- SEO Settings
+- Media Library
+- Settings
+
+Use clean dark dashboard UI.
+```
+
+## 7. Blog Section
+
+```text
+Add a Blog section and Blog page.
+
+Frontend:
+- Blog listing page
+- Single blog details page
+- Category filter
+- Search option
+
+Admin:
+- Create blog post
+- Edit old posts
+- Delete posts
+- Upload featured image
+- Add title, slug, category, tags, content, meta title, meta description
+- Publish/draft status
+
+Homepage should show latest 3 blog posts.
+```
+
+## 8. Our Space Section
+
+```text
+Add a section called “Our Space”.
+
+Purpose:
+This section will show banners, announcements, event posters, podcast posters, and video content.
+
+Frontend:
+- Grid of posters
+- Poster title
+- Short description
+- Date
+- When clicked, redirect to YouTube link in new tab
+
+Admin:
+- Upload poster/banner
+- Add title
+- Add description
+- Add YouTube URL
+- Add publish/draft status
+```
+
+## 9. Contact Form + Lead System
+
+```text
+Upgrade Contact page.
+
+Contact form fields:
+- Name
+- Email
+- Telegram/WhatsApp
+- Company/Project Name
+- Project Website
+- Project Stage dropdown:
+  Idea / MVP / Pre-TGE / Launched / Looking for Listing
+- Budget dropdown:
+  Under $5K / $5K-$15K / $15K-$50K / $50K+
+- Message
+
+When submitted:
+- Save data to database
+- Show success message
+- Admin can view all leads
+
+Admin Lead Panel:
+- View lead details
+- Search/filter
+- Status:
+  New / Contacted / Qualified / Closed / Rejected
+- Export CSV
+```
+
+## 10. Footer Upgrade
+
+```text
+Upgrade footer.
+
+Footer columns:
+1. SpudBlocks
+Short description:
+“Token Launch, Growth, Liquidity, and Exchange Pathway Infrastructure for Web3 projects.”
+
+2. Company
+- About
+- Services
+- Case Studies
+- Blog
+- Contact
+
+3. Legal
+- Disclaimer
+- Terms
+- Privacy Policy
+
+4. Social
+Add icons:
+Facebook: https://www.facebook.com/spudblocks
+Instagram: https://instagram.com/SPUDBLOCKS_Com
+LinkedIn: https://www.linkedin.com/company/spudblocks/
+Twitter/X: https://twitter.com/SpudBlocks
+
+Add footer disclaimer:
+“Information on this website is provided for informational purposes only and does not constitute legal, tax, investment, exchange-listing, or financial advice. SpudBlocks does not guarantee exchange listings, token performance, liquidity outcomes, or fundraising results.”
+
+Add bottom:
+© 2026 SpudBlocks. All rights reserved.
+```
+
+## 11. Add Premium Animation
+
+```text
+Add professional animations using Framer Motion or CSS animations.
+
+Animations:
+- Hero text fade-up
+- Pipeline step reveal on scroll
+- Service cards hover glow
+- Case study cards lift on hover
+- Background floating gradient particles
+- Counter animation for metrics
+- Smooth page transitions
+
+Important:
+Animations must feel premium and smooth.
+Do not make it childish or overloaded.
+```
+
+## 12. SEO Pages
+
+```text
+Create SEO-friendly pages:
+
+/
+/about
+/services
+/case-studies
+/case-studies/[slug]
+/blog
+/blog/[slug]
+/our-space
+/contact
+/disclaimer
+/privacy-policy
+/terms
+
+Each page must have meta title and meta description.
+Admin should be able to edit SEO fields.
+```
+
+## 13. Final Polish Command
+
+```text
+Make the website look like a premium Web3 infrastructure company, not a normal agency.
+
+Checklist:
+- Strong hero message
+- Clear CTA
+- Web3 dark premium design
+- SpudBlocks gradient branding
+- Case studies
+- Blog
+- Admin CMS
+- Lead dashboard
+- Our Space posters
+- Social links
+- Legal footer
+- Responsive mobile design
+- Fast loading
+- SEO optimized
+- Smooth animations
+
+Final quality target:
+The website should feel ready for investors, partners, Web3 founders, and exchange-related business discussions.
+```
+
+Use this final short command after all changes:
+
+```text
+Now audit the entire website and fix all UI bugs, spacing problems, mobile responsiveness issues, broken links, admin panel errors, and content alignment problems. Make the final result production-ready and visually premium.
+```

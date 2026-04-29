@@ -3,23 +3,29 @@ import { Link, useLocation } from "wouter";
 import { useAdmin } from "@/contexts/AdminContext";
 import {
   LayoutDashboard,
+  FileEdit,
   BookOpen,
-  FileText,
-  Image,
-  MessageSquare,
+  Newspaper,
+  Image as ImageIcon,
+  Mail,
   Search,
+  Images,
   LogOut,
   ChevronRight,
+  Lightbulb,
 } from "lucide-react";
 import logoUrl from "@assets/Spud_Blocks_Only_Logo_Color_Full_1777450332585.png";
 
 const navItems = [
   { href: "/admin/dashboard", label: "Dashboard", icon: LayoutDashboard },
+  { href: "/admin/website-content", label: "Website Content", icon: FileEdit },
   { href: "/admin/case-studies", label: "Case Studies", icon: BookOpen },
-  { href: "/admin/insights", label: "Blog / Insights", icon: FileText },
-  { href: "/admin/our-space", label: "Our Space", icon: Image },
-  { href: "/admin/contacts", label: "Contacts", icon: MessageSquare },
+  { href: "/admin/blog", label: "Blog Posts", icon: Newspaper },
+  { href: "/admin/insights", label: "Insights", icon: Lightbulb },
+  { href: "/admin/our-space", label: "Our Space", icon: ImageIcon },
+  { href: "/admin/contacts", label: "Contact Leads", icon: Mail },
   { href: "/admin/seo", label: "SEO Settings", icon: Search },
+  { href: "/admin/media", label: "Media Library", icon: Images },
 ];
 
 export default function AdminLayout({ children }: { children: ReactNode }) {
@@ -34,10 +40,15 @@ export default function AdminLayout({ children }: { children: ReactNode }) {
   return (
     <div className="min-h-screen bg-background flex">
       {/* Sidebar */}
-      <aside className="w-60 shrink-0 border-r border-border bg-card flex flex-col">
+      <aside className="w-64 shrink-0 border-r border-border bg-card flex flex-col">
         <div className="h-16 flex items-center gap-2.5 px-4 border-b border-border">
           <img src={logoUrl} alt="SpudBlocks" className="h-7 w-7 object-contain" />
-          <span className="font-mono font-bold text-sm tracking-tighter">ADMIN</span>
+          <div className="flex flex-col leading-none">
+            <span className="font-mono font-bold text-sm tracking-tighter">SPUDBLOCKS</span>
+            <span className="font-mono text-[10px] tracking-widest uppercase text-muted-foreground mt-0.5">
+              Admin Console
+            </span>
+          </div>
         </div>
 
         <nav className="flex-1 p-3 space-y-1 overflow-y-auto">

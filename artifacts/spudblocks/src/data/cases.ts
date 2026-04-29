@@ -6,6 +6,11 @@ export type CaseStudy = {
   summary: string;
   situation: string;
   scope: string;
+  problem?: string;
+  solution?: string;
+  result?: string;
+  tags?: string[];
+  imageUrl?: string;
   timelineMilestones: { phase: string; weeks: number; description: string }[];
   beforeAfter: { metric: string; before: number; after: number; unit: string }[];
   heroMetrics: { label: string; value: string; sublabel: string }[];

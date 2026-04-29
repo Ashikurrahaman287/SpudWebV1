@@ -2,6 +2,9 @@ import { motion } from "framer-motion";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
 import { CountUp } from "@/components/animated/CountUp";
+import { useMemo } from "react";
+import { getWebsiteContent, getBlogPosts } from "@/lib/storage";
+import { useSEO } from "@/lib/seo";
 import {
   ArrowRight,
   BarChart3,
@@ -14,6 +17,15 @@ import {
   Quote,
   Award,
   Trophy,
+  Search,
+  Hammer,
+  Megaphone,
+  TrendingUp,
+  Droplets,
+  LineChart,
+  Globe2,
+  Briefcase,
+  Clock,
 } from "lucide-react";
 
 const fadeUp = {
@@ -142,7 +154,40 @@ const audiences = [
   },
 ];
 
+const systemStepIcons = [Search, Hammer, Rocket, Megaphone, Droplets, LineChart];
+
+const trustMetrics = [
+  { key: "metricsProjects", label: "Projects Supported", icon: Briefcase },
+  { key: "metricsCommunity", label: "Community Reach Potential", icon: Globe2 },
+  { key: "metricsPartners", label: "Strategic Market Partners", icon: TrendingUp },
+  { key: "metricsExperience", label: "Years Web3 Execution", icon: Clock },
+] as const;
+
 export default function Home() {
+  useSEO("home", {
+    title: "SpudBlocks — Web3 Launch, Growth & Exchange Infrastructure",
+    description:
+      "We Launch, Grow, and List Web3 Projects. SpudBlocks is the integrated launch infrastructure system for token teams — from idea to exchange.",
+  });
+
+  const websiteContent = useMemo(() => getWebsiteContent(), []);
+  const latestPosts = useMemo(
+    () =>
+      getBlogPosts()
+        .filter((p) => p.status === "published")
+        .slice(0, 3),
+    []
+  );
+
+  const systemSteps = [
+    { title: websiteContent.systemStep1Title, desc: websiteContent.systemStep1Desc },
+    { title: websiteContent.systemStep2Title, desc: websiteContent.systemStep2Desc },
+    { title: websiteContent.systemStep3Title, desc: websiteContent.systemStep3Desc },
+    { title: websiteContent.systemStep4Title, desc: websiteContent.systemStep4Desc },
+    { title: websiteContent.systemStep5Title, desc: websiteContent.systemStep5Desc },
+    { title: websiteContent.systemStep6Title, desc: websiteContent.systemStep6Desc },
+  ];
+
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
@@ -205,26 +250,22 @@ export default function Home() {
                     "linear-gradient(90deg, hsl(var(--brand-blue)), hsl(var(--brand-violet)))",
                 }}
               />
-              <span>Operator-Grade Launch Discipline</span>
+              <span>Web3 Launch Infrastructure</span>
             </motion.div>
 
             <motion.h1
               variants={fadeUp}
               className="text-5xl md:text-7xl font-bold tracking-tighter mb-8 leading-[1.05]"
             >
-              From launch chaos to{" "}
-              <br className="hidden md:block" />
-              <span className="sb-headline-shimmer">exchange readiness.</span>
+              We Launch, Grow, and{" "}
+              <span className="sb-headline-shimmer">List Web3 Projects.</span>
             </motion.h1>
 
             <motion.p
               variants={fadeUp}
               className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl leading-relaxed"
             >
-              SpudBlocks helps pre-TGE founders and token teams move from launch
-              planning and site build to traction, market readiness, and
-              strategic partner alignment. One integrated operating layer.
-              Outcomes, not services.
+              {websiteContent.heroSubheadline}
             </motion.p>
 
             <motion.div variants={fadeUp} className="flex flex-col sm:flex-row gap-4">
@@ -234,7 +275,7 @@ export default function Home() {
                 className="h-12 px-8 font-mono uppercase tracking-wider text-sm group"
               >
                 <Link href="/apply">
-                  Apply for Review
+                  Apply for Launch
                   <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </Button>
@@ -244,8 +285,41 @@ export default function Home() {
                 size="lg"
                 className="h-12 px-8 font-mono uppercase tracking-wider text-sm"
               >
-                <Link href="/work">View Outcomes</Link>
+                <Link href="#system">Explore Our System</Link>
               </Button>
+            </motion.div>
+
+            {/* Pipeline visualization */}
+            <motion.div
+              variants={fadeUp}
+              className="mt-16 md:mt-20 pt-10 border-t border-border/50"
+            >
+              <div className="font-mono text-[10px] tracking-widest uppercase text-muted-foreground mb-5">
+                The launch pipeline
+              </div>
+              <div className="flex flex-wrap items-center gap-x-2 gap-y-3">
+                {["Idea", "Build", "Launch", "Grow", "Liquidity", "Exchange"].map(
+                  (step, i, arr) => (
+                    <div key={step} className="flex items-center gap-2">
+                      <span
+                        className="text-xs md:text-sm font-mono uppercase tracking-wider px-3 py-1.5 border bg-card/60 backdrop-blur-sm"
+                        style={{
+                          borderColor: "hsl(var(--brand-violet) / 0.4)",
+                          color: i === 0 ? "hsl(var(--brand-blue))" : i === arr.length - 1 ? "hsl(var(--brand-violet))" : undefined,
+                        }}
+                      >
+                        {step}
+                      </span>
+                      {i < arr.length - 1 && (
+                        <ArrowRight
+                          className="w-3.5 h-3.5"
+                          style={{ color: "hsl(var(--brand-violet) / 0.6)" }}
+                        />
+                      )}
+                    </div>
+                  )
+                )}
+              </div>
             </motion.div>
           </motion.div>
         </div>
@@ -288,76 +362,186 @@ export default function Home() {
         </div>
       </section>
 
-      {/* System Diagram Section */}
-      <section className="py-24 md:py-32 relative">
-        <div className="container mx-auto px-4 md:px-6">
-          <div className="mb-16 md:mb-24 max-w-2xl">
+      {/* 0 → Exchange System Section */}
+      <section id="system" className="py-24 md:py-32 relative scroll-mt-20">
+        <div
+          className="absolute inset-0 pointer-events-none opacity-40"
+          style={{
+            background:
+              "radial-gradient(ellipse at center, hsl(var(--brand-violet) / 0.08), transparent 70%)",
+          }}
+        />
+        <div className="container mx-auto px-4 md:px-6 relative">
+          <div className="mb-16 md:mb-20 max-w-2xl">
             <div className="font-mono text-xs tracking-wider uppercase text-muted-foreground mb-4">
-              The Launch System
+              The Operating System
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold tracking-tighter mb-6">
-              Build, Traction, and Readiness as one operating layer.
+            <h2 className="text-3xl md:text-5xl font-bold tracking-tighter mb-6 leading-[1.1]">
+              The 0 →{" "}
+              <span className="sb-headline-shimmer">Exchange System</span>
             </h2>
             <p className="text-lg text-muted-foreground">
-              Three coordinated pillars. One delivery cadence. Founders see what
-              gets built, what gets measured, and what gates must be passed
-              before market entry.
+              Six coordinated stages take your project from cold idea to listed
+              token. One operating partner across the entire pipeline.
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-6 md:gap-8">
-            {[
-              {
-                icon: Zap,
-                title: "Build Phase",
-                stage: "01",
-                desc: "Websites, dashboards, token-sale UX, KYC-ready flows, vesting comms, and launch collateral engineered for conversion.",
-                link: "/solutions/launch-system",
-              },
-              {
-                icon: BarChart3,
-                title: "Traction Engine",
-                stage: "02",
-                desc: "Narrative design, campaign systems, community activation, and reporting cadence built for projects that need traction, not vanity metrics.",
-                link: "/solutions/growth-engine",
-              },
-              {
-                icon: ShieldCheck,
-                title: "Exchange Readiness",
-                stage: "03",
-                desc: "Readiness scorecards, compliance posture inputs, liquidity prep, and partner-facing market entry discipline.",
-                link: "/solutions/exchange-readiness",
-              },
-            ].map((pillar, i) => (
-              <Link key={i} href={pillar.link} className="block group">
-                <div className="sb-card-hover h-full p-8 border border-border bg-card hover:border-primary/60 relative overflow-hidden">
-                  <div className="absolute top-0 left-0 right-0 h-px opacity-0 group-hover:opacity-100 transition-opacity"
+          {/* Pipeline timeline */}
+          <div className="relative">
+            <div
+              className="hidden md:block absolute left-0 right-0 top-12 h-px"
+              style={{
+                background:
+                  "linear-gradient(90deg, transparent, hsl(var(--brand-blue) / 0.4), hsl(var(--brand-violet) / 0.6), hsl(var(--brand-violet) / 0.4), transparent)",
+              }}
+            />
+
+            <motion.div
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-80px" }}
+              variants={staggerContainer}
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-5 md:gap-4"
+            >
+              {systemSteps.map((step, i) => {
+                const Icon = systemStepIcons[i];
+                return (
+                  <motion.div
+                    key={i}
+                    variants={fadeUp}
+                    className="relative"
+                  >
+                    <div className="sb-card-hover h-full p-6 border border-border bg-card hover:border-primary/60 relative overflow-hidden flex flex-col">
+                      <div className="flex items-center justify-between mb-5">
+                        <div
+                          className="w-12 h-12 flex items-center justify-center relative z-10"
+                          style={{
+                            background:
+                              "linear-gradient(135deg, hsl(var(--brand-blue) / 0.15), hsl(var(--brand-violet) / 0.2))",
+                            border: "1px solid hsl(var(--brand-violet) / 0.4)",
+                          }}
+                        >
+                          <Icon
+                            className="w-5 h-5"
+                            style={{ color: "hsl(var(--brand-violet))" }}
+                          />
+                        </div>
+                        <span
+                          className="font-mono text-xs tracking-wider"
+                          style={{ color: "hsl(var(--brand-violet) / 0.7)" }}
+                        >
+                          0{i + 1}
+                        </span>
+                      </div>
+                      <h3 className="text-lg font-bold mb-3 leading-tight">
+                        {step.title}
+                      </h3>
+                      <p className="text-sm text-muted-foreground leading-relaxed">
+                        {step.desc}
+                      </p>
+                      <div
+                        className="absolute inset-x-0 bottom-0 h-0.5 opacity-0 group-hover:opacity-100 transition-opacity"
+                        style={{
+                          background:
+                            "linear-gradient(90deg, hsl(var(--brand-blue)), hsl(var(--brand-violet)))",
+                        }}
+                      />
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </motion.div>
+          </div>
+
+          <div className="mt-12 flex justify-center">
+            <Button
+              asChild
+              variant="outline"
+              size="lg"
+              className="font-mono uppercase tracking-wider text-xs"
+            >
+              <Link href="/services">
+                See full services <ArrowRight className="ml-2 w-4 h-4" />
+              </Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Trust / Metrics Section */}
+      <section className="py-24 md:py-28 border-y border-border relative overflow-hidden">
+        <div
+          className="absolute inset-0 pointer-events-none opacity-50"
+          style={{
+            background:
+              "radial-gradient(ellipse at top right, hsl(var(--brand-blue) / 0.1), transparent 60%), radial-gradient(ellipse at bottom left, hsl(var(--brand-violet) / 0.1), transparent 60%)",
+          }}
+        />
+        <div className="container mx-auto px-4 md:px-6 relative">
+          <div className="mb-16 max-w-2xl">
+            <div className="font-mono text-xs tracking-wider uppercase text-primary mb-4">
+              Trust Layer
+            </div>
+            <h2 className="text-3xl md:text-5xl font-bold tracking-tighter mb-4 leading-[1.1]">
+              Built for{" "}
+              <span className="sb-headline-shimmer">Serious Web3 Founders.</span>
+            </h2>
+          </div>
+
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-60px" }}
+            variants={staggerContainer}
+            className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5"
+          >
+            {trustMetrics.map((m, i) => {
+              const Icon = m.icon;
+              const value = (websiteContent as Record<string, string>)[m.key];
+              return (
+                <motion.div
+                  key={m.key}
+                  variants={fadeUp}
+                  className="sb-card-hover p-7 border border-border bg-card hover:border-primary/60 relative overflow-hidden"
+                >
+                  <div
+                    className="absolute -top-12 -right-12 w-32 h-32 rounded-full opacity-20 blur-2xl"
                     style={{
-                      background:
-                        "linear-gradient(90deg, transparent, hsl(var(--brand-violet)), transparent)",
+                      background: i % 2 === 0
+                        ? "hsl(var(--brand-blue))"
+                        : "hsl(var(--brand-violet))",
                     }}
                   />
-                  <div className="flex items-start justify-between mb-6">
-                    <div className="w-12 h-12 bg-primary/10 text-primary flex items-center justify-center">
-                      <pillar.icon className="w-6 h-6" />
+                  <div className="relative">
+                    <Icon
+                      className="w-5 h-5 mb-5"
+                      style={{ color: "hsl(var(--brand-violet))" }}
+                    />
+                    <div
+                      className="text-4xl md:text-5xl font-bold font-mono tracking-tight mb-2"
+                      style={{
+                        background:
+                          "linear-gradient(135deg, hsl(var(--brand-blue)), hsl(var(--brand-violet)))",
+                        WebkitBackgroundClip: "text",
+                        backgroundClip: "text",
+                        WebkitTextFillColor: "transparent",
+                      }}
+                    >
+                      <CountUp value={value} duration={1.8 + i * 0.1} />
                     </div>
-                    <span className="font-mono text-xs text-muted-foreground tracking-wider">
-                      {pillar.stage}
-                    </span>
+                    <div className="text-xs text-muted-foreground font-medium uppercase tracking-wider">
+                      {m.label}
+                    </div>
                   </div>
-                  <h3 className="text-xl font-bold mb-4 group-hover:text-primary transition-colors">
-                    {pillar.title}
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {pillar.desc}
-                  </p>
-                  <div className="mt-8 flex items-center text-sm font-mono text-primary uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity">
-                    Explore <ArrowRight className="ml-2 w-4 h-4" />
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
+                </motion.div>
+              );
+            })}
+          </motion.div>
+
+          <p className="mt-10 text-xs text-muted-foreground/70 max-w-2xl italic">
+            Figures represent internal experience, ecosystem reach, and
+            strategic execution capacity.
+          </p>
         </div>
       </section>
 
