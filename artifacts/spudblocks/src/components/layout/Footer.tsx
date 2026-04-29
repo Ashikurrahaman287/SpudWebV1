@@ -1,4 +1,5 @@
 import { Link } from "wouter";
+import logoUrl from "@assets/Spud_Blocks_Only_Logo_Color_Full_1777450332585.png";
 
 export function Footer() {
   return (
@@ -6,8 +7,8 @@ export function Footer() {
       <div className="container mx-auto px-4 md:px-6">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
           <div className="md:col-span-1">
-            <Link href="/" className="font-mono font-bold text-xl tracking-tighter flex items-center gap-2 mb-4">
-              <div className="w-4 h-4 bg-primary rounded-sm" />
+            <Link href="/" className="font-mono font-bold text-xl tracking-tighter flex items-center gap-2.5 mb-4">
+              <img src={logoUrl} alt="SpudBlocks" className="h-8 w-8 object-contain" />
               SPUDBLOCKS
             </Link>
             <p className="text-sm text-muted-foreground max-w-xs">
