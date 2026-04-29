@@ -4,6 +4,8 @@
 
 pnpm workspace monorepo using TypeScript. Each package manages its own dependencies.
 
+The `spudblocks` artifact is a Vite + React marketing/admin site for SpudBlocks (operator-grade launch discipline for token projects), ported from Vercel/v0. It uses wouter for routing, Tailwind v4 for styling, and Radix UI + shadcn-style components. State is held in React Context and persisted to localStorage (`@/lib/storage`); there is no backend dependency for the site itself. Admin login uses `VITE_ADMIN_PASSWORD` (default `spudblocks2024`).
+
 ## Stack
 
 - **Monorepo tool**: pnpm workspaces

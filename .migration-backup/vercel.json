@@ -1,9 +1,0 @@
-{
-  "buildCommand": "pnpm --filter @workspace/spudblocks run build",
-  "outputDirectory": "artifacts/spudblocks/dist/public",
-  "installCommand": "pnpm install",
-  "framework": null,
-  "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
-  ]
-}
