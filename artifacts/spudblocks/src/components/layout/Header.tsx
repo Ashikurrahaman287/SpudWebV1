@@ -42,6 +42,7 @@ export function Header() {
           <Link href="/method" className="hover:text-primary transition-colors">Method</Link>
           <Link href="/insights" className="hover:text-primary transition-colors">Insights</Link>
           <Link href="/about" className="hover:text-primary transition-colors">About</Link>
+          <Link href="/our-space" className="hover:text-primary transition-colors">Our Space</Link>
         </nav>
 
         <div className="hidden md:flex items-center gap-4">
@@ -66,6 +67,7 @@ export function Header() {
           <Link href="/method" className="px-2 py-2 hover:bg-muted font-medium">Method</Link>
           <Link href="/insights" className="px-2 py-2 hover:bg-muted font-medium">Insights</Link>
           <Link href="/about" className="px-2 py-2 hover:bg-muted font-medium">About</Link>
+          <Link href="/our-space" className="px-2 py-2 hover:bg-muted font-medium">Our Space</Link>
           <Button asChild className="mt-4 w-full">
             <Link href="/apply">Apply Now</Link>
           </Button>

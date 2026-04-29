@@ -6,7 +6,11 @@ pnpm workspace monorepo using TypeScript. Each package manages its own dependenc
 
 ## Artifacts
 
-- **spudblocks** (`/`) — SpudBlocks marketing/brand site. Web3 launch operator for pre-TGE token founders. Conversion-first React + Vite multi-page site (Home, Solutions x3, Work + case studies, Who We Serve, Method, Insights + articles, About, Apply, Legal hub + 4 sub-pages).
+- **spudblocks** (`/`) — SpudBlocks marketing/brand site. Web3 launch operator for pre-TGE token founders. Conversion-first React + Vite multi-page site with full Admin CMS panel.
+  - **Public pages**: Home, Solutions x3, Work + case studies, Who We Serve, Method, Insights + articles, About, Apply, Our Space, Contact, Legal hub + 4 sub-pages
+  - **Admin CMS** (`/admin`): Password-protected panel (default pw: `spudblocks2024`, override via `VITE_ADMIN_PASSWORD` env). Manage case studies, blog posts, Our Space items, contact submissions (with CSV export), and per-page SEO settings. All data persisted in browser localStorage with fallback to static data files.
+  - **Social media**: Footer links to Facebook, Instagram, LinkedIn, Twitter
+  - **Vercel production**: `vercel.json` at workspace root with SPA rewrites, build command, and output directory configured
 - **api-server** (`/api`) — Shared Express API server (currently health route only).
 - **mockup-sandbox** (`/__mockup`) — Canvas/UI prototyping sandbox.
 

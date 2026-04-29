@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "wouter";
-import { insightsData } from "@/data/insights";
+import { getInsights } from "@/lib/storage";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { ArrowRight, BookOpen, Clock, Download } from "lucide-react";
@@ -9,6 +9,7 @@ export default function Insights() {
   const [filter, setFilter] = useState("All");
   const [emailStatus, setEmailStatus] = useState<"idle" | "success">("idle");
 
+  const insightsData = getInsights();
   const categories = ["All", "Launch Readiness", "Growth", "Exchange", "Tokenomics", "Operator Notes"];
   const featured = insightsData[0];
   

@@ -11,6 +11,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { CheckCircle2, Lock } from "lucide-react";
+import { addContact } from "@/lib/storage";
 
 const formSchema = z.object({
   fullName: z.string().min(2, "Name is required"),
@@ -50,8 +51,13 @@ export default function Apply() {
 
   const onSubmit = async (data: FormValues) => {
     setIsSubmitting(true);
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    addContact({
+      name: data.fullName,
+      email: data.email,
+      phone: "",
+      message: `Project: ${data.projectName} (${data.role})\nURL: ${data.url}\nStage: ${data.stage} | TGE: ${data.tgeTiming} | Chain: ${data.chain}\nProduct: ${data.productStatus} | Community: ${data.communitySize}\nSale: ${data.saleStructure} | KYC: ${data.kycStatus}\nNeed: ${data.primaryNeed} | Budget: ${data.budget}\nOutcome: ${data.outcome}\nContact: ${data.contactChannel}\nContext: ${data.additionalContext || "N/A"}`,
+    });
     setIsSubmitting(false);
     setIsSuccess(true);
     window.scrollTo({ top: 0, behavior: 'smooth' });

@@ -1,8 +1,9 @@
 import { Link } from "wouter";
-import { casesData } from "@/data/cases";
+import { getCases } from "@/lib/storage";
 import { motion } from "framer-motion";
 
 export default function Work() {
+  const casesData = getCases();
   return (
     <div className="flex flex-col min-h-screen pt-32 pb-20">
       <div className="container mx-auto px-4 md:px-6">

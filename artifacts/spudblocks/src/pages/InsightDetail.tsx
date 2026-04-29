@@ -1,11 +1,12 @@
 import { useRoute, Link } from "wouter";
-import { insightsData } from "@/data/insights";
+import { getInsights } from "@/lib/storage";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Clock } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function InsightDetail() {
   const [, params] = useRoute("/insights/:slug");
+  const insightsData = getInsights();
   const insight = insightsData.find(i => i.slug === params?.slug);
 
   if (!insight) {

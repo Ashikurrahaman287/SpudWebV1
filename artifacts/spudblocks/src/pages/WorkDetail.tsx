@@ -1,11 +1,12 @@
 import { useRoute, Link } from "wouter";
-import { casesData } from "@/data/cases";
+import { getCases } from "@/lib/storage";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
 export default function WorkDetail() {
   const [, params] = useRoute("/work/:slug");
+  const casesData = getCases();
   const caseData = casesData.find(c => c.slug === params?.slug);
 
   if (!caseData) {
