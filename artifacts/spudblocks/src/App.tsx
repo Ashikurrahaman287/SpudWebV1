@@ -1,4 +1,4 @@
-import { Switch, Route, Router as WouterRouter } from "wouter";
+import { Switch, Route, Router as WouterRouter, Redirect } from "wouter";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -6,7 +6,6 @@ import { Layout } from "@/components/layout/Layout";
 import { AdminProvider } from "@/contexts/AdminContext";
 import { useAdmin } from "@/contexts/AdminContext";
 import { useEffect } from "react";
-import { useLocation } from "wouter";
 
 // Public pages
 import Home from "@/pages/Home";
@@ -46,71 +45,115 @@ import AdminSEO from "@/pages/admin/AdminSEO";
 
 const queryClient = new QueryClient();
 
-function AdminApp() {
+// Wraps a component in AdminLayout + auth guard
+function AdminRoute({ component: Component }: { component: React.ComponentType }) {
   const { isAuthenticated } = useAdmin();
-  const [, navigate] = useLocation();
-
-  useEffect(() => {
-    if (!isAuthenticated) navigate("/admin");
-  }, [isAuthenticated]);
-
-  if (!isAuthenticated) return <AdminLogin />;
-
+  if (!isAuthenticated) {
+    return <Redirect to="/admin" />;
+  }
   return (
     <AdminLayout>
-      <Switch>
-        <Route path="/admin/dashboard" component={AdminDashboard} />
-        <Route path="/admin/case-studies/new" component={AdminCaseStudyEdit} />
-        <Route path="/admin/case-studies/:slug" component={AdminCaseStudyEdit} />
-        <Route path="/admin/case-studies" component={AdminCaseStudies} />
-        <Route path="/admin/insights/new" component={AdminInsightEdit} />
-        <Route path="/admin/insights/:slug" component={AdminInsightEdit} />
-        <Route path="/admin/insights" component={AdminInsights} />
-        <Route path="/admin/our-space" component={AdminOurSpace} />
-        <Route path="/admin/contacts" component={AdminContacts} />
-        <Route path="/admin/seo" component={AdminSEO} />
-        <Route>{() => { navigate("/admin/dashboard"); return null; }}</Route>
-      </Switch>
+      <Component />
     </AdminLayout>
-  );
-}
-
-function PublicRouter() {
-  return (
-    <Layout>
-      <Switch>
-        <Route path="/" component={Home} />
-        <Route path="/solutions" component={Solutions} />
-        <Route path="/solutions/launch-system" component={LaunchSystem} />
-        <Route path="/solutions/growth-engine" component={GrowthEngine} />
-        <Route path="/solutions/exchange-readiness" component={ExchangeReadiness} />
-        <Route path="/work" component={Work} />
-        <Route path="/work/:slug" component={WorkDetail} />
-        <Route path="/who-we-serve" component={WhoWeServe} />
-        <Route path="/method" component={Method} />
-        <Route path="/insights" component={Insights} />
-        <Route path="/insights/:slug" component={InsightDetail} />
-        <Route path="/about" component={About} />
-        <Route path="/apply" component={Apply} />
-        <Route path="/our-space" component={OurSpace} />
-        <Route path="/contact" component={Contact} />
-        <Route path="/legal" component={LegalHub} />
-        <Route path="/legal/disclosures" component={Disclosures} />
-        <Route path="/legal/token-allocation" component={TokenAllocation} />
-        <Route path="/legal/privacy" component={Privacy} />
-        <Route path="/legal/terms" component={Terms} />
-        <Route component={NotFound} />
-      </Switch>
-    </Layout>
   );
 }
 
 function Router() {
   return (
     <Switch>
+      {/* ── Admin routes (no public layout) ─────────────────── */}
       <Route path="/admin" component={AdminLogin} />
-      <Route path="/admin/:rest*" component={AdminApp} />
-      <Route component={PublicRouter} />
+      <Route path="/admin/dashboard">
+        {() => <AdminRoute component={AdminDashboard} />}
+      </Route>
+      <Route path="/admin/case-studies/:slug">
+        {() => <AdminRoute component={AdminCaseStudyEdit} />}
+      </Route>
+      <Route path="/admin/case-studies">
+        {() => <AdminRoute component={AdminCaseStudies} />}
+      </Route>
+      <Route path="/admin/insights/:slug">
+        {() => <AdminRoute component={AdminInsightEdit} />}
+      </Route>
+      <Route path="/admin/insights">
+        {() => <AdminRoute component={AdminInsights} />}
+      </Route>
+      <Route path="/admin/our-space">
+        {() => <AdminRoute component={AdminOurSpace} />}
+      </Route>
+      <Route path="/admin/contacts">
+        {() => <AdminRoute component={AdminContacts} />}
+      </Route>
+      <Route path="/admin/seo">
+        {() => <AdminRoute component={AdminSEO} />}
+      </Route>
+
+      {/* ── Public routes (with header + footer layout) ──────── */}
+      <Route path="/">
+        {() => <Layout><Home /></Layout>}
+      </Route>
+      <Route path="/solutions">
+        {() => <Layout><Solutions /></Layout>}
+      </Route>
+      <Route path="/solutions/launch-system">
+        {() => <Layout><LaunchSystem /></Layout>}
+      </Route>
+      <Route path="/solutions/growth-engine">
+        {() => <Layout><GrowthEngine /></Layout>}
+      </Route>
+      <Route path="/solutions/exchange-readiness">
+        {() => <Layout><ExchangeReadiness /></Layout>}
+      </Route>
+      <Route path="/work">
+        {() => <Layout><Work /></Layout>}
+      </Route>
+      <Route path="/work/:slug">
+        {() => <Layout><WorkDetail /></Layout>}
+      </Route>
+      <Route path="/who-we-serve">
+        {() => <Layout><WhoWeServe /></Layout>}
+      </Route>
+      <Route path="/method">
+        {() => <Layout><Method /></Layout>}
+      </Route>
+      <Route path="/insights">
+        {() => <Layout><Insights /></Layout>}
+      </Route>
+      <Route path="/insights/:slug">
+        {() => <Layout><InsightDetail /></Layout>}
+      </Route>
+      <Route path="/about">
+        {() => <Layout><About /></Layout>}
+      </Route>
+      <Route path="/apply">
+        {() => <Layout><Apply /></Layout>}
+      </Route>
+      <Route path="/our-space">
+        {() => <Layout><OurSpace /></Layout>}
+      </Route>
+      <Route path="/contact">
+        {() => <Layout><Contact /></Layout>}
+      </Route>
+      <Route path="/legal">
+        {() => <Layout><LegalHub /></Layout>}
+      </Route>
+      <Route path="/legal/disclosures">
+        {() => <Layout><Disclosures /></Layout>}
+      </Route>
+      <Route path="/legal/token-allocation">
+        {() => <Layout><TokenAllocation /></Layout>}
+      </Route>
+      <Route path="/legal/privacy">
+        {() => <Layout><Privacy /></Layout>}
+      </Route>
+      <Route path="/legal/terms">
+        {() => <Layout><Terms /></Layout>}
+      </Route>
+
+      {/* 404 */}
+      <Route>
+        {() => <Layout><NotFound /></Layout>}
+      </Route>
     </Switch>
   );
 }

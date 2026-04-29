@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { getContacts, updateContactStatus, deleteContact, ContactSubmission } from "@/lib/storage";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Search, Trash2, Download } from "lucide-react";
+import { Search, Trash2, Download, RefreshCw } from "lucide-react";
 
 function statusColor(status: ContactSubmission["status"]) {
   if (status === "new") return "bg-amber-500/20 text-amber-400";
@@ -27,11 +27,26 @@ function exportCSV(contacts: ContactSubmission[]) {
 }
 
 export default function AdminContacts() {
-  const [contacts, setContacts] = useState<ContactSubmission[]>(() => getContacts());
+  const [contacts, setContacts] = useState<ContactSubmission[]>([]);
   const [query, setQuery] = useState("");
   const [filterStatus, setFilterStatus] = useState<string>("all");
   const [confirmDelete, setConfirmDelete] = useState<string | null>(null);
   const [expanded, setExpanded] = useState<string | null>(null);
+
+  const refresh = useCallback(() => {
+    setContacts(getContacts());
+  }, []);
+
+  // Read fresh on mount and whenever the tab regains focus
+  useEffect(() => {
+    refresh();
+    const handleFocus = () => refresh();
+    window.addEventListener("focus", handleFocus);
+    document.addEventListener("visibilitychange", () => {
+      if (!document.hidden) refresh();
+    });
+    return () => window.removeEventListener("focus", handleFocus);
+  }, [refresh]);
 
   const filtered = contacts.filter((c) => {
     const matchesQuery =
@@ -61,10 +76,16 @@ export default function AdminContacts() {
             {contacts.length} total · {contacts.filter((c) => c.status === "new").length} new
           </p>
         </div>
-        <Button variant="outline" onClick={() => exportCSV(contacts)} className="font-mono uppercase tracking-wider text-xs">
-          <Download className="w-4 h-4 mr-2" />
-          Export CSV
-        </Button>
+        <div className="flex gap-2">
+          <Button variant="ghost" onClick={refresh} className="font-mono uppercase tracking-wider text-xs">
+            <RefreshCw className="w-4 h-4 mr-2" />
+            Refresh
+          </Button>
+          <Button variant="outline" onClick={() => exportCSV(contacts)} className="font-mono uppercase tracking-wider text-xs">
+            <Download className="w-4 h-4 mr-2" />
+            Export CSV
+          </Button>
+        </div>
       </div>
 
       <div className="flex gap-3 mb-4">
