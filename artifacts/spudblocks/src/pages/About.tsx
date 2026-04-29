@@ -177,7 +177,7 @@ export default function About() {
                       <motion.div
                         key={member.name}
                         variants={fadeUp}
-                        className="border border-border bg-card p-6 group hover:border-primary/50 transition-colors"
+                        className="sb-card-hover border border-border bg-card p-6 group hover:border-primary/50"
                       >
                         <div
                           className="w-12 h-12 flex items-center justify-center font-mono font-bold text-primary-foreground mb-5 text-sm tracking-wider"
@@ -232,8 +232,15 @@ export default function About() {
                 {partners.map((p) => (
                   <div
                     key={p.name}
-                    className="bg-card p-6 hover:bg-muted/30 transition-colors group"
+                    className="bg-card p-6 hover:bg-muted/30 transition-colors group relative overflow-hidden"
                   >
+                    <div
+                      className="absolute top-0 left-0 right-0 h-px opacity-0 group-hover:opacity-100 transition-opacity"
+                      style={{
+                        background:
+                          "linear-gradient(90deg, transparent, hsl(var(--brand-violet)), transparent)",
+                      }}
+                    />
                     <div
                       className="font-mono font-bold text-base md:text-lg tracking-tight mb-2 group-hover:text-primary transition-colors"
                     >

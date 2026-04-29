@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
+import { CountUp } from "@/components/animated/CountUp";
 import {
   ArrowRight,
   BarChart3,
@@ -146,18 +147,37 @@ export default function Home() {
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden border-b border-border">
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_hsl(var(--brand-violet)/0.18),_transparent_60%)]" />
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_hsl(var(--brand-blue)/0.12),_transparent_55%)]" />
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <div
-            className="absolute inset-0 opacity-[0.04]"
+            className="sb-aurora sb-aurora-a"
+            style={{ width: 620, height: 620, top: "-12%", right: "-8%" }}
+          />
+          <div
+            className="sb-aurora sb-aurora-b"
+            style={{ width: 540, height: 540, bottom: "-18%", left: "-10%" }}
+          />
+          <div
+            className="sb-aurora sb-aurora-c"
+            style={{ width: 460, height: 460, top: "30%", left: "35%" }}
+          />
+          <div
+            className="absolute inset-0 opacity-[0.05] sb-grid-pan"
             style={{
               backgroundImage:
                 "linear-gradient(hsl(var(--foreground)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--foreground)) 1px, transparent 1px)",
               backgroundSize: "64px 64px",
             }}
           />
+          <div
+            className="absolute inset-0"
+            style={{
+              background:
+                "radial-gradient(ellipse at center, transparent 30%, hsl(var(--background)) 80%)",
+            }}
+          />
         </div>
+        <div className="sb-sweep-line" />
+        <div className="sb-sweep-line absolute bottom-0 top-auto" style={{ animationDelay: "3s" }} />
 
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           <motion.div
@@ -168,9 +188,16 @@ export default function Home() {
           >
             <motion.div
               variants={fadeUp}
-              className="mb-6 flex items-center gap-2 font-mono text-sm tracking-wider uppercase"
+              className="mb-6 flex items-center gap-3 font-mono text-sm tracking-wider uppercase"
               style={{ color: "hsl(var(--brand-violet))" }}
             >
+              <span
+                className="sb-pulse-dot inline-block w-1.5 h-1.5 rounded-full"
+                style={{
+                  background: "hsl(var(--brand-violet))",
+                  boxShadow: "0 0 12px hsl(var(--brand-violet) / 0.8)",
+                }}
+              />
               <div
                 className="h-px w-8"
                 style={{
@@ -187,15 +214,7 @@ export default function Home() {
             >
               From launch chaos to{" "}
               <br className="hidden md:block" />
-              <span
-                className="text-transparent bg-clip-text"
-                style={{
-                  backgroundImage:
-                    "linear-gradient(90deg, hsl(var(--brand-blue)), hsl(var(--brand-violet)) 60%, hsl(var(--brand-purple)))",
-                }}
-              >
-                exchange readiness.
-              </span>
+              <span className="sb-headline-shimmer">exchange readiness.</span>
             </motion.h1>
 
             <motion.p
@@ -233,20 +252,39 @@ export default function Home() {
       </section>
 
       {/* KPI Proof Bar */}
-      <section className="border-b border-border bg-card/50">
+      <section className="border-b border-border bg-card/50 relative overflow-hidden">
+        <div className="sb-sweep-line" style={{ animationDuration: "8s" }} />
         <div className="container mx-auto px-4 md:px-6 py-12">
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 md:gap-10">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-60px" }}
+            variants={staggerContainer}
+            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 md:gap-10"
+          >
             {proofMetrics.map((kpi, i) => (
-              <div key={i} className="space-y-2 border-l-2 border-primary/30 pl-4">
+              <motion.div
+                key={i}
+                variants={fadeUp}
+                className="relative space-y-2 pl-4 group"
+              >
+                <span
+                  className="absolute left-0 top-0 bottom-0 w-[2px] origin-top"
+                  style={{
+                    background:
+                      "linear-gradient(180deg, hsl(var(--brand-blue)), hsl(var(--brand-violet)))",
+                    transform: "scaleY(1)",
+                  }}
+                />
                 <div className="text-2xl md:text-3xl font-bold text-foreground font-mono tracking-tight">
-                  {kpi.value}
+                  <CountUp value={kpi.value} duration={1.6 + i * 0.08} />
                 </div>
                 <div className="text-xs text-muted-foreground font-medium uppercase tracking-wider">
                   {kpi.label}
                 </div>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -292,7 +330,7 @@ export default function Home() {
               },
             ].map((pillar, i) => (
               <Link key={i} href={pillar.link} className="block group">
-                <div className="h-full p-8 border border-border bg-card hover:border-primary/60 transition-all relative overflow-hidden">
+                <div className="sb-card-hover h-full p-8 border border-border bg-card hover:border-primary/60 relative overflow-hidden">
                   <div className="absolute top-0 left-0 right-0 h-px opacity-0 group-hover:opacity-100 transition-opacity"
                     style={{
                       background:
@@ -360,7 +398,7 @@ export default function Home() {
             {featuredCases.map((c) => (
               <motion.div key={c.slug} variants={fadeUp}>
                 <Link href={`/work/${c.slug}`} className="block group h-full">
-                  <div className="h-full flex flex-col p-7 border border-border bg-background hover:border-primary/60 transition-all">
+                  <div className="sb-card-hover h-full flex flex-col p-7 border border-border bg-background hover:border-primary/60">
                     <div className="flex items-center gap-2 mb-5 text-xs font-mono uppercase tracking-wider">
                       <span
                         className="px-2 py-1 border"
@@ -430,7 +468,7 @@ export default function Home() {
               <motion.div
                 key={i}
                 variants={fadeUp}
-                className="relative p-7 border border-border bg-card flex flex-col"
+                className="sb-card-hover relative p-7 border border-border bg-card flex flex-col"
               >
                 <Quote
                   className="absolute top-6 right-6 w-6 h-6 opacity-20"
@@ -482,15 +520,31 @@ export default function Home() {
               partners.
             </p>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-px bg-border border border-border">
-            {partners.map((name) => (
-              <div
-                key={name}
-                className="bg-card h-20 flex items-center justify-center font-mono font-bold text-sm md:text-base tracking-[0.18em] text-muted-foreground hover:text-foreground hover:bg-muted/30 transition-colors select-none"
-              >
-                {name}
-              </div>
-            ))}
+          <div className="relative overflow-hidden border border-border bg-card">
+            <div
+              className="pointer-events-none absolute inset-y-0 left-0 w-24 z-10"
+              style={{
+                background:
+                  "linear-gradient(90deg, hsl(var(--card)) 0%, transparent 100%)",
+              }}
+            />
+            <div
+              className="pointer-events-none absolute inset-y-0 right-0 w-24 z-10"
+              style={{
+                background:
+                  "linear-gradient(270deg, hsl(var(--card)) 0%, transparent 100%)",
+              }}
+            />
+            <div className="sb-marquee-track flex gap-px py-1">
+              {[...partners, ...partners].map((name, i) => (
+                <div
+                  key={`${name}-${i}`}
+                  className="shrink-0 w-56 h-20 flex items-center justify-center font-mono font-bold text-base tracking-[0.18em] text-muted-foreground hover:text-foreground transition-colors select-none border-r border-border"
+                >
+                  {name}
+                </div>
+              ))}
+            </div>
           </div>
           <p className="text-center text-[11px] text-muted-foreground/70 mt-6 max-w-2xl mx-auto">
             Partners shown represent operational integration points. Listing and
@@ -540,7 +594,7 @@ export default function Home() {
               <motion.div
                 key={i}
                 variants={fadeUp}
-                className="p-6 border border-border bg-card hover:border-primary/40 transition-colors group"
+                className="sb-card-hover p-6 border border-border bg-card hover:border-primary/40 group"
               >
                 <div className="flex items-start justify-between mb-4">
                   <div
@@ -585,11 +639,18 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-60px" }}
+            variants={staggerContainer}
+            className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4"
+          >
             {audiences.map((a, i) => (
-              <div
+              <motion.div
                 key={i}
-                className="p-6 border border-border bg-card hover:border-primary/40 transition-colors"
+                variants={fadeUp}
+                className="sb-card-hover p-6 border border-border bg-card hover:border-primary/40"
               >
                 <div className="w-10 h-10 flex items-center justify-center mb-5 text-primary border border-primary/30 bg-primary/5">
                   <a.icon className="w-5 h-5" />
@@ -598,9 +659,9 @@ export default function Home() {
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   {a.desc}
                 </p>
-              </div>
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
 
           <div className="mt-10">
             <Link
