@@ -10,6 +10,9 @@ import {
   Users,
   Building2,
   Network,
+  Quote,
+  Award,
+  Trophy,
 } from "lucide-react";
 
 const fadeUp = {
@@ -76,15 +79,43 @@ const featuredCases = [
   },
 ];
 
-const ecosystemLogos = [
-  "REPUBLIC",
-  "FJORD",
-  "COINLIST",
-  "OUTLIER",
-  "IMPOSSIBLE",
-  "CV LABS",
-  "ANIMOCA",
-  "MARKETACROSS",
+const partners = [
+  "ASCENDEX",
+  "BIGONE",
+  "HOTBIT",
+  "TAPBIT",
+  "BICONOMY",
+  "GOOSE FINANCE",
+];
+
+const testimonials = [
+  {
+    text: "SpudBlocks turned our chaotic roadmap into a precise, executable timeline. The dashboard they built was flawless.",
+    author: "Elena R.",
+    role: "Founder, Aura Finance",
+    project: "DeFi Protocol",
+  },
+  {
+    text: "The operator approach works. They built systems that actually scaled with our ecosystem.",
+    author: "Marcus T.",
+    role: "Head of Ecosystem, Nexus Network",
+    project: "L2 Ecosystem",
+  },
+  {
+    text: "They understand the intersection of DeFi and TradFi better than anyone we evaluated.",
+    author: "David L.",
+    role: "CEO, YieldBase",
+    project: "RWA / Infra",
+  },
+];
+
+const recognitions = [
+  { year: "2025", org: "Ascendex", award: "Outstanding Innovation Partner" },
+  { year: "2024", org: "COPX", award: "Premier Strategic Alliance" },
+  { year: "2023", org: "BigONE", award: "Best Business Management Team" },
+  { year: "2022", org: "MEXC", award: "Business Growth Partner" },
+  { year: "2022", org: "Tapbit", award: "Top Business Development Team" },
+  { year: "2021", org: "Hotbit", award: "Best CSR Partner" },
 ];
 
 const audiences = [
@@ -371,29 +402,170 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Logo / Ecosystem Wall */}
-      <section className="py-16 md:py-20 border-t border-border">
+      {/* Testimonials */}
+      <section className="py-24 md:py-32 border-t border-border">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="mb-16 max-w-2xl">
+            <div className="font-mono text-xs tracking-wider uppercase text-muted-foreground mb-4">
+              Operator Voices
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold tracking-tighter mb-4">
+              What founders say after a launch.
+            </h2>
+            <p className="text-lg text-muted-foreground">
+              Three perspectives — protocol founder, ecosystem lead, and
+              executive — on what changes when launch execution is handled as
+              one operating layer.
+            </p>
+          </div>
+
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+            variants={staggerContainer}
+            className="grid md:grid-cols-3 gap-6"
+          >
+            {testimonials.map((t, i) => (
+              <motion.div
+                key={i}
+                variants={fadeUp}
+                className="relative p-7 border border-border bg-card flex flex-col"
+              >
+                <Quote
+                  className="absolute top-6 right-6 w-6 h-6 opacity-20"
+                  style={{ color: "hsl(var(--brand-violet))" }}
+                />
+                <div className="text-xs font-mono uppercase tracking-wider text-muted-foreground mb-5">
+                  {t.project}
+                </div>
+                <p className="text-base md:text-lg leading-relaxed text-foreground mb-8 flex-1">
+                  &ldquo;{t.text}&rdquo;
+                </p>
+                <div className="pt-5 border-t border-border flex items-center gap-3">
+                  <div
+                    className="w-9 h-9 flex items-center justify-center font-mono text-xs font-bold text-primary-foreground"
+                    style={{
+                      background:
+                        "linear-gradient(135deg, hsl(var(--brand-blue)), hsl(var(--brand-violet)))",
+                    }}
+                  >
+                    {t.author
+                      .split(" ")
+                      .map((n) => n[0])
+                      .join("")}
+                  </div>
+                  <div>
+                    <div className="font-bold text-sm leading-tight">
+                      {t.author}
+                    </div>
+                    <div className="text-xs text-muted-foreground leading-tight mt-0.5">
+                      {t.role}
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Partners */}
+      <section className="py-20 border-t border-border bg-card/30">
         <div className="container mx-auto px-4 md:px-6">
           <div className="text-center mb-10">
-            <div className="font-mono text-xs tracking-wider uppercase text-muted-foreground">
-              Operating in the same circles as
+            <div className="font-mono text-xs tracking-wider uppercase text-muted-foreground mb-2">
+              Partners
             </div>
+            <p className="text-sm text-muted-foreground">
+              Active operating relationships with exchanges and ecosystem
+              partners.
+            </p>
           </div>
-          <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-8 gap-x-6 gap-y-8 items-center">
-            {ecosystemLogos.map((name, i) => (
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-px bg-border border border-border">
+            {partners.map((name) => (
               <div
-                key={i}
-                className="font-mono text-sm md:text-base tracking-[0.2em] text-muted-foreground/70 hover:text-foreground transition-colors text-center select-none"
+                key={name}
+                className="bg-card h-20 flex items-center justify-center font-mono font-bold text-sm md:text-base tracking-[0.18em] text-muted-foreground hover:text-foreground hover:bg-muted/30 transition-colors select-none"
               >
                 {name}
               </div>
             ))}
           </div>
-          <p className="text-center text-xs text-muted-foreground/60 mt-10 max-w-2xl mx-auto">
-            Reference set used for benchmarking site standards. Not an
-            endorsement or commercial relationship unless disclosed in a case
-            study.
+          <p className="text-center text-[11px] text-muted-foreground/70 mt-6 max-w-2xl mx-auto">
+            Partners shown represent operational integration points. Listing and
+            market access decisions are made by the relevant venues. See{" "}
+            <Link href="/legal/disclosures" className="text-primary hover:underline">
+              exchange pathway disclosure
+            </Link>
+            .
           </p>
+        </div>
+      </section>
+
+      {/* Recognitions */}
+      <section className="py-24 md:py-28 border-t border-border">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
+            <div className="max-w-2xl">
+              <div className="font-mono text-xs tracking-wider uppercase text-muted-foreground mb-4 flex items-center gap-2">
+                <Trophy className="w-3.5 h-3.5" />
+                <span>Our Humble Recognitions</span>
+              </div>
+              <h2 className="text-3xl md:text-4xl font-bold tracking-tighter mb-4">
+                Recognized by the venues we work alongside.
+              </h2>
+              <p className="text-lg text-muted-foreground">
+                Selected program awards across exchange partners — for
+                partnership quality, business development, and long-term
+                operating discipline.
+              </p>
+            </div>
+            <Link
+              href="/about"
+              className="inline-flex items-center text-sm font-mono uppercase tracking-wider text-primary hover:opacity-80 transition-opacity self-start md:self-auto"
+            >
+              Full timeline <ArrowRight className="ml-2 w-4 h-4" />
+            </Link>
+          </div>
+
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-60px" }}
+            variants={staggerContainer}
+            className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4"
+          >
+            {recognitions.map((r, i) => (
+              <motion.div
+                key={i}
+                variants={fadeUp}
+                className="p-6 border border-border bg-card hover:border-primary/40 transition-colors group"
+              >
+                <div className="flex items-start justify-between mb-4">
+                  <div
+                    className="font-mono text-2xl font-bold tracking-tight"
+                    style={{
+                      background:
+                        "linear-gradient(135deg, hsl(var(--brand-blue)), hsl(var(--brand-violet)))",
+                      WebkitBackgroundClip: "text",
+                      backgroundClip: "text",
+                      WebkitTextFillColor: "transparent",
+                    }}
+                  >
+                    {r.year}
+                  </div>
+                  <Award className="w-4 h-4 text-primary opacity-60 group-hover:opacity-100 transition-opacity" />
+                </div>
+                <div className="font-mono text-xs uppercase tracking-[0.2em] text-muted-foreground mb-2">
+                  {r.org}
+                </div>
+                <div className="font-bold text-base leading-snug">
+                  {r.award}
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
       </section>
 
