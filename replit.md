@@ -44,6 +44,14 @@ The api-server has a SendGrid notification helper in `src/lib/email.ts` that fir
 ### Contact form
 New fields beyond name/email: telegram (or whatsapp), company, project website, project stage (Idea/MVP/Pre-TGE/Launched/Looking for Listing), budget bracket, message. Stored as `ContactSubmission` and exported via CSV from admin.
 
+### Vercel / production-ready notes
+The frontend is set up to deploy on Vercel as a static SPA while the Express API runs separately (Replit, Render, etc). Full guide in `DEPLOYMENT.md`.
+- **`artifacts/spudblocks/vercel.json`** — installs the whole pnpm workspace then builds only this artifact, outputs to `dist/public`, rewrites every path to `index.html` for SPA routing, ships sane security headers, caches `/assets/*` immutably.
+- **`artifacts/spudblocks/vite.config.ts`** — `BASE_PATH` defaults to `"/"` (only Replit sets a path prefix), `PORT` is optional in production/Vercel builds.
+- **API base URL**: `artifacts/spudblocks/src/lib/api.ts` reads `VITE_API_URL`. Empty = same-origin (Replit dev). Set to an absolute origin on Vercel.
+- **CORS**: `artifacts/api-server/src/app.ts` now reads `CORS_ORIGINS` (comma-separated allowlist). Empty = allow all (dev). Allowed headers include `x-admin-token`.
+- `.env.example` files in both `artifacts/spudblocks/` and `artifacts/api-server/` document every env var.
+
 ### Animation system
 - **Page transitions**: every route is wrapped in `PageTransition` (`src/components/animated/PageTransition.tsx`) inside `Layout.tsx`. Uses framer-motion `AnimatePresence` keyed by `useLocation()` for a fade+slide on every navigation. Also resets scroll-to-top on route change.
 - **Scroll reveals**: reusable helpers in `src/components/animated/Reveal.tsx` — `Reveal`, `StaggerGroup`, `StaggerItem` — wrap content with `whileInView` + `viewport.once`.

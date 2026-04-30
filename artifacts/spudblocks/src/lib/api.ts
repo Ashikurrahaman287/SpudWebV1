@@ -31,6 +31,18 @@ export function clearAdminToken(): void {
   }
 }
 
+// Resolve the API base URL.
+// - Set VITE_API_URL to an absolute origin (e.g. https://api.example.com)
+//   when deploying the frontend separately from the backend (Vercel, etc).
+// - Defaults to "" so calls hit the same origin as the page (Replit dev).
+const RAW_API_BASE = (import.meta.env.VITE_API_URL ?? "").trim();
+const API_BASE = RAW_API_BASE.replace(/\/$/, "");
+
+function url(path: string): string {
+  const normalized = path.startsWith("/") ? path : `/${path}`;
+  return `${API_BASE}${normalized}`;
+}
+
 async function handle<T>(res: Response): Promise<T> {
   if (!res.ok) {
     const text = await res.text().catch(() => "");
@@ -43,7 +55,7 @@ async function handle<T>(res: Response): Promise<T> {
 export async function createContactApi(
   payload: CreateContactPayload,
 ): Promise<ContactSubmission> {
-  const res = await fetch("/api/contacts", {
+  const res = await fetch(url("/api/contacts"), {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload),
@@ -60,7 +72,7 @@ function adminHeaders(): HeadersInit {
 }
 
 export async function listContactsApi(): Promise<ContactSubmission[]> {
-  const res = await fetch("/api/contacts", { headers: adminHeaders() });
+  const res = await fetch(url("/api/contacts"), { headers: adminHeaders() });
   return handle<ContactSubmission[]>(res);
 }
 
@@ -68,7 +80,7 @@ export async function patchContactStatusApi(
   id: string,
   status: ContactSubmission["status"],
 ): Promise<ContactSubmission> {
-  const res = await fetch(`/api/contacts/${id}`, {
+  const res = await fetch(url(`/api/contacts/${id}`), {
     method: "PATCH",
     headers: adminHeaders(),
     body: JSON.stringify({ status }),
@@ -77,7 +89,7 @@ export async function patchContactStatusApi(
 }
 
 export async function deleteContactApi(id: string): Promise<void> {
-  const res = await fetch(`/api/contacts/${id}`, {
+  const res = await fetch(url(`/api/contacts/${id}`), {
     method: "DELETE",
     headers: adminHeaders(),
   });
