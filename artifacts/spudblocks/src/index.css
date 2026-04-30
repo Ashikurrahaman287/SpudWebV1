@@ -274,15 +274,139 @@
   animation: sb-float-y 4s ease-in-out infinite;
 }
 
+/* Smooth scrolling + page-wide motion polish */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: hsl(var(--background));
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    180deg,
+    hsl(var(--brand-blue) / 0.6),
+    hsl(var(--brand-violet) / 0.6),
+    hsl(var(--brand-purple) / 0.6)
+  );
+  border-radius: 999px;
+  border: 2px solid hsl(var(--background));
+}
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    180deg,
+    hsl(var(--brand-blue)),
+    hsl(var(--brand-violet)),
+    hsl(var(--brand-purple))
+  );
+}
+
+/* Card lift on hover */
+.sb-card-lift {
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+.sb-card-lift:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 20px 40px -20px hsl(var(--brand-violet) / 0.35),
+    0 8px 16px -8px rgba(0, 0, 0, 0.4);
+  border-color: hsl(var(--brand-violet) / 0.5);
+}
+
+/* Subtle border glow accent for premium cards */
+.sb-card-glow {
+  position: relative;
+  isolation: isolate;
+}
+.sb-card-glow::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    hsl(var(--brand-blue) / 0.0),
+    hsl(var(--brand-violet) / 0.6),
+    hsl(var(--brand-purple) / 0.0)
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+  z-index: -1;
+}
+.sb-card-glow:hover::before {
+  opacity: 1;
+}
+
+/* Underline-on-hover for inline links */
+.sb-link-underline {
+  background-image: linear-gradient(
+    90deg,
+    hsl(var(--brand-violet)),
+    hsl(var(--brand-purple))
+  );
+  background-size: 0% 1px;
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  transition: background-size 0.35s ease;
+}
+.sb-link-underline:hover {
+  background-size: 100% 1px;
+}
+
+/* Button shimmer (apply with class) */
+.sb-btn-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+.sb-btn-shimmer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    115deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.15) 50%,
+    transparent 70%
+  );
+  transform: translateX(-120%);
+  transition: transform 0.7s ease;
+  pointer-events: none;
+}
+.sb-btn-shimmer:hover::after {
+  transform: translateX(120%);
+}
+
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
   .sb-aurora,
   .sb-grid-pan,
   .sb-headline-shimmer,
   .sb-marquee-track,
   .sb-sweep-line,
   .sb-pulse-dot,
-  .sb-float {
+  .sb-float,
+  .sb-card-lift,
+  .sb-btn-shimmer::after {
     animation: none !important;
+    transition: none !important;
+    transform: none !important;
   }
   .sb-headline-shimmer {
     background-position: 0 0;

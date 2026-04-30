@@ -133,7 +133,7 @@ export default function Solutions() {
           >
             {services.map((s) => (
               <motion.div key={s.title} variants={fadeUp}>
-                <div className="sb-card-hover relative h-full p-8 border border-border bg-card hover:border-primary/60 overflow-hidden group">
+                <div className="sb-card-hover sb-card-lift relative h-full p-8 border border-border bg-card hover:border-primary/60 overflow-hidden group rounded-md">
                   <div
                     className="absolute -inset-px opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"
                     style={{

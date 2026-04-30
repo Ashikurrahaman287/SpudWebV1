@@ -44,6 +44,12 @@ The api-server has a SendGrid notification helper in `src/lib/email.ts` that fir
 ### Contact form
 New fields beyond name/email: telegram (or whatsapp), company, project website, project stage (Idea/MVP/Pre-TGE/Launched/Looking for Listing), budget bracket, message. Stored as `ContactSubmission` and exported via CSV from admin.
 
+### Animation system
+- **Page transitions**: every route is wrapped in `PageTransition` (`src/components/animated/PageTransition.tsx`) inside `Layout.tsx`. Uses framer-motion `AnimatePresence` keyed by `useLocation()` for a fade+slide on every navigation. Also resets scroll-to-top on route change.
+- **Scroll reveals**: reusable helpers in `src/components/animated/Reveal.tsx` — `Reveal`, `StaggerGroup`, `StaggerItem` — wrap content with `whileInView` + `viewport.once`.
+- **Header**: `motion.header` with mount animation, gradient underline that scales on hover or when route is active, and a state-driven Services dropdown using `AnimatePresence` (more reliable than CSS group-hover).
+- **CSS utilities** in `src/index.css`: `.sb-card-lift` (translateY + violet shadow on hover), `.sb-card-glow` (animated gradient border), `.sb-link-underline`, `.sb-btn-shimmer`, custom gradient scrollbar, and `html { scroll-behavior: smooth }`. All gated by `prefers-reduced-motion`.
+
 ## Stack
 
 - **Monorepo tool**: pnpm workspaces

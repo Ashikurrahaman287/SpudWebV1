@@ -130,7 +130,7 @@ export default function Blog() {
               {filtered.map((p) => (
                 <motion.div key={p.id} variants={fadeUp}>
                   <Link href={`/blog/${p.slug}`} className="group block h-full">
-                    <article className="h-full flex flex-col border border-border bg-card hover:border-primary/60 transition-colors overflow-hidden sb-card-hover">
+                    <article className="h-full flex flex-col border border-border bg-card hover:border-primary/60 transition-colors overflow-hidden sb-card-hover sb-card-lift sb-card-glow rounded-md">
                       <div className="aspect-[16/9] relative overflow-hidden bg-muted">
                         {p.featuredImage ? (
                           <img

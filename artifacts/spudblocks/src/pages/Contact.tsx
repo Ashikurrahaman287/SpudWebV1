@@ -162,24 +162,59 @@ export default function Contact() {
               "radial-gradient(ellipse at center, hsl(var(--brand-violet) / 0.18), transparent 70%)",
           }}
         />
-        <div className="container mx-auto px-4 md:px-6 max-w-3xl text-center relative">
-          <span className="font-mono text-xs tracking-widest text-primary uppercase mb-4 block">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          className="container mx-auto px-4 md:px-6 max-w-3xl text-center relative"
+        >
+          <motion.span
+            initial={{ opacity: 0, letterSpacing: "0.05em" }}
+            animate={{ opacity: 1, letterSpacing: "0.2em" }}
+            transition={{ duration: 0.8, delay: 0.1 }}
+            className="font-mono text-xs text-primary uppercase mb-4 block"
+          >
             Contact
-          </span>
-          <h1 className="text-5xl md:text-6xl font-bold tracking-tighter mb-6">
+          </motion.span>
+          <motion.h1
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+            className="text-5xl md:text-6xl font-bold tracking-tighter mb-6"
+          >
             Tell us about your launch.
-          </h1>
-          <p className="text-xl text-muted-foreground">
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.28, ease: [0.22, 1, 0.36, 1] }}
+            className="text-xl text-muted-foreground"
+          >
             Founders, ecosystem leads, and exchange partners — share your
             project details and we will respond within 48 hours.
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
       </section>
 
       <section className="py-20">
         <div className="container mx-auto px-4 md:px-6 max-w-2xl">
-          <div className="grid sm:grid-cols-2 gap-4 mb-8">
-            <div className="border border-border bg-card p-5">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+            variants={{
+              hidden: {},
+              visible: { transition: { staggerChildren: 0.12 } },
+            }}
+            className="grid sm:grid-cols-2 gap-4 mb-8"
+          >
+            <motion.div
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] } },
+              }}
+              className="border border-border bg-card p-5 sb-card-lift rounded-md"
+            >
               <Mail className="w-4 h-4 text-primary mb-3" />
               <div className="text-xs font-mono uppercase tracking-wider text-muted-foreground mb-1">
                 Email
@@ -187,8 +222,14 @@ export default function Contact() {
               <a href="mailto:hello@spudblocks.com" className="text-sm font-medium hover:text-primary">
                 hello@spudblocks.com
               </a>
-            </div>
-            <div className="border border-border bg-card p-5">
+            </motion.div>
+            <motion.div
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: { opacity: 1, y: 0, transition: { duration: 0.55, ease: [0.22, 1, 0.36, 1] } },
+              }}
+              className="border border-border bg-card p-5 sb-card-lift rounded-md"
+            >
               <MessageSquare className="w-4 h-4 text-primary mb-3" />
               <div className="text-xs font-mono uppercase tracking-wider text-muted-foreground mb-1">
                 Apply
@@ -196,11 +237,18 @@ export default function Contact() {
               <Link href="/apply" className="text-sm font-medium hover:text-primary">
                 Submit a full launch application →
               </Link>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 border border-border bg-card p-6 md:p-8">
+            <motion.form
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+              onSubmit={form.handleSubmit(onSubmit)}
+              className="space-y-6 border border-border bg-card p-6 md:p-8 rounded-md"
+            >
               <div className="grid sm:grid-cols-2 gap-6">
                 <FormField control={form.control} name="name" render={({ field }) => (
                   <FormItem>
@@ -333,7 +381,7 @@ export default function Contact() {
                 Confidential by default. We do not share inbound details with
                 third parties.
               </p>
-            </form>
+            </motion.form>
           </Form>
         </div>
       </section>
