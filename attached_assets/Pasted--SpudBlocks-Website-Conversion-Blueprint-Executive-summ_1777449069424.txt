@@ -1,0 +1,596 @@
+
+SpudBlocks Website Conversion Blueprint
+Executive summary
+SpudBlocks should not present itself online as a generic “Web3 agency.” The highest-signal benchmark sites in this category behave more like launch operators, venture platforms, or market-entry systems: they lead with one sharp promise, immediately prove credibility with concrete numbers, explain productized capabilities in plain language, surface case metrics early, and make the next step unmistakable through a direct apply/book-call path. That pattern shows up across launch platforms like Republic and CoinList, sale infrastructure sites like Fjord Foundry and Impossible Finance, incubators like Outlier Ventures and CV Labs, and high-converting agency sites like Coinbound, MarketAcross, and TokenMinds. Brand-led Web3 firms such as Animoca Brands add another important lesson: audience segmentation and explicit legal/disclosure language increase trust, especially when token activity is involved. 
+
+For SpudBlocks, the right website model is a conversion-first product/advisory hybrid: a shallow top navigation, a proof-heavy home page, three productized solution pages, a rigorous case study system, one qualification-first application flow, and a small but serious legal/disclosures hub. That structure is more likely to convert early-stage token founders, pre-TGE teams, and exchange-side partners than a portfolio-style agency site or a purely brand-driven narrative site. 
+
+The single most important strategic decision is this: the site should sell outcomes, not services. The homepage message should be about getting token projects from pre-TGE chaos to launch readiness, traction, and market entry, while the page system underneath proves SpudBlocks can handle build, growth, and readiness as one integrated operating layer. The recommended primary CTA is Apply for a Launch Readiness Review; the recommended secondary CTA is View Launch Outcomes. That fits the dominant peer pattern of “Apply to launch,” “Apply to partner,” “Book a call,” “Join the waitlist,” or “Get a proposal,” rather than vague contact-page conversion. 
+
+What the best benchmark sites actually do
+Across the strongest sites, six patterns repeat.
+
+First, they put quantified proof near the top. Republic Launchpad highlights capital deployed, average raise size, community size, countries reached, and transactions powered. Fjord Foundry leads with participants, funds raised, and traded volume. Impossible Finance places raised capital, projects supported, KYC users, and ecosystem breadth above the fold. CoinList publishes launch counts, dollars purchased, and early-adopter participation. This is a direct signal that SpudBlocks should open with its strongest verified operating numbers, not with abstract branding. 
+
+Second, they describe the product or service as a system, not a menu. Republic explains launchpad features such as KYC/AML, payment support, wallet infrastructure, vesting setup, and exchange introductions. Impossible groups research, advisory, deal infrastructure, and AI tools into a single operating model. Fjord explains sale formats, sale stages, and launch partner roles. MarketAcross explains services as a process, not just a list. SpudBlocks should do the same: explain the launch stack as a staged operating workflow. 
+
+Third, the best sites use case studies with concrete outcome metrics, not vague client logos alone. MarketAcross shows article counts and readership. Fjord publishes funds raised, percent sold, and current valuation snapshots on selected launches. TokenMinds shows private-sale results including raised capital and KYC completion, and community-growth results in airdrop campaigns. Coinbound’s public case-study hub leads with named wins such as CPA, ROAS, registrations, and reach. SpudBlocks should replicate this pattern aggressively. 
+
+Fourth, they segment audiences clearly. Animoca Brands explicitly separates founders, investors, consumers, and institutions. CV Labs separates accelerator, services, locations, events, and community. TokenMinds separates services, products, industries, and resources. That means SpudBlocks should not force founders, exchanges, and ecosystem partners into the same copy path. 
+
+Fifth, they publish thought leadership and program detail. Outlier explains what founders get, program length, mentor access, and post-program support. CV Labs explains bootcamp structure, mentor access, funding terms, and application process. MarketAcross and Coinbound both invest heavily in educational content and practical resources. SpudBlocks should therefore ship with an insights hub and at least one strong flagship playbook on token launch readiness. 
+
+Sixth, when real token activity is involved, credible firms publish explicit legal and risk language. CoinList states it does not provide investment, legal, or tax advice and warns of restrictions, risk, and possible total loss. Republic’s digital-asset disclosures emphasize volatility and cyber/fraud risk. Animoca includes general-information, forward-looking-statements, data-source, and token-holdings disclaimers directly on site pages. SpudBlocks should not hide these disclosures in a footer-only void. 
+
+Prioritized inspiration sources
+
+Republic Launchpad — best benchmark for a productized launch page with stats, feature granularity, and a direct apply CTA. 
+CoinList Token Launches — best benchmark for positioning around onchain launches and for proof that launch metrics matter. 
+Fjord Foundry — best benchmark for sale mechanics, success-story format, and transparent metric-forward storytelling. 
+Impossible Finance — best benchmark for bundling research, advisory, and execution infrastructure in one operating narrative. 
+Outlier Ventures — best benchmark for thesis-led authority, FAQ depth, and founder-benefit framing. 
+CV Labs Accelerator — best benchmark for mentor proof, partner proof, waitlist capture, and program detail. 
+Coinbound — best benchmark for conversion-led service navigation, awards, resource depth, and case-study merchandising. 
+MarketAcross — best benchmark for clean contact conversion and case-study metric storytelling. 
+TokenMinds — best benchmark for integrating development, marketing, case studies, awards, and contact capture on one site. 
+Animoca Brands — best benchmark for audience segmentation, ecosystem-scale positioning, and disclosure rigor. 
+Recommended sitemap
+The strongest benchmark sites keep the primary navigation broad and shallow, then deepen through solution, resource, or case-study pages. TokenMinds uses Services, Products, Industries, About, and Resources; Coinbound uses Services, Case Studies, Company, Resources, and Pricing; CV Labs uses About, Locations, Acceleration, Services, and Events. SpudBlocks should follow that simpler information architecture rather than building a bloated agency mega-menu. 
+
+Primary navigation
+
+Home /
+Solutions /solutions
+Launch System /solutions/launch-system
+Growth Engine /solutions/growth-engine
+Exchange Readiness /solutions/exchange-readiness
+Work /work
+Case Study Template /work/[case-slug]
+Who We Serve /who-we-serve
+Method /method
+Insights /insights
+Insight Article Template /insights/[article-slug]
+About /about
+Apply /apply
+Legal /legal
+Disclosures /legal/disclosures
+Token Allocation Disclosure /legal/token-allocation
+Privacy /legal/privacy
+Terms /legal/terms
+Supporting non-nav SEO landing pages
+
+/token-launch-agency
+/pre-tge-marketing
+/token-sale-platform-development
+/exchange-listing-readiness
+/web3-launch-readiness-checklist
+These supporting pages should exist for search capture but be lightly linked from Solutions, Method, Insights, and footer navigation rather than promoted as primary top-nav items.
+
+Page-by-page content architecture
+The page system below is deliberately designed to combine the strongest patterns from launchpads, incubators, and high-converting Web3 agencies: a proof-first hero, a system diagram, outcome-backed case proof, a strong CTA, and visible disclosures where needed. 
+
+Home
+
+Headline: Launch token projects with product, growth, and exchange readiness in one system.
+Subhead: SpudBlocks helps pre-TGE founders and token teams move from launch planning and site build to traction, market readiness, and strategic partner alignment.
+Key sections
+Proof bar with 4–6 verified metrics
+SpudBlocks Launch System diagram: Build → Traction → Readiness
+Featured outcomes: 3 case studies with hard numbers
+Who we serve: founders, token teams, exchanges, ecosystems
+Qualification CTA strip
+Primary CTA: Apply for a Launch Readiness Review
+Secondary CTA: View Launch Outcomes
+SEO keywords: web3 launch agency, token launch infrastructure, pre-TGE growth, token project marketing, exchange readiness
+Meta title: SpudBlocks | Web3 Launch and Growth Infrastructure for Token Projects
+Meta description: Launch token projects with one integrated system for build, growth, and exchange readiness. Apply for a SpudBlocks launch review.
+Required assets: hero animation, KPI bar, 3 case metric cards, logo wall, one operator/team image, optional world map showing market reach
+Solutions overview
+
+Headline: One operating system for token launch, traction, and market entry.
+Subhead: Product build, growth execution, and exchange readiness delivered as one coordinated launch stack.
+Key sections
+Solution cards for the three pillars
+Deliverables matrix by stage
+“Why fragmented vendors fail” comparison
+Case-study band mapped to each solution
+FAQ on timelines, scope, and engagement models
+CTAs: Explore the three pillars; Apply for review
+SEO keywords: web3 services, token launch services, dapp development for token projects, web3 growth partner
+Meta title: Solutions | SpudBlocks Web3 Launch System
+Meta description: Explore SpudBlocks’ three-pillar system for launch buildout, growth execution, and exchange readiness.
+Required assets: architecture diagram, service icons, stage-by-stage milestone visual, KPI pull quotes
+Launch System
+
+Headline: Build the launch surface, sale flow, and founder-facing assets before TGE pressure hits.
+Subhead: Websites, landing pages, dashboards, token-sale UX, messaging assets, and launch infrastructure designed for investor clarity and user conversion.
+Key sections
+What gets built: site, UX, dashboards, forms, analytics, CMS
+Token-sale support components: KYC-ready UX, payment pathways, vesting communication, referral logic
+Launch collateral: messaging, deck support, FAQ, docs layer
+Delivery process and dependencies
+Case outcomes
+CTAs: Request scope audit; Apply for review
+SEO keywords: token sale platform development, web3 website development, dapp launch support, token launch website
+Meta title: Launch System | SpudBlocks Build Infrastructure for Token Projects
+Meta description: Build launch-ready web infrastructure for token projects, from websites and dashboards to conversion-focused launch flows.
+Required assets: product mockups, workflow diagram, UI screens, one short testimonial, readiness checklist graphic
+Growth Engine
+
+Headline: Turn launch attention into qualified community, users, and momentum.
+Subhead: Narrative design, campaign systems, creator/community loops, launch content, and reporting built for token projects that need traction, not vanity metrics.
+Key sections
+Narrative and positioning
+Founder/content engine and campaign execution
+Community activation and retention loops
+Measurement dashboard and reporting cadence
+Case outcomes by channel or phase
+CTAs: See growth proof; Apply for review
+SEO keywords: token launch marketing, web3 growth agency, crypto PR and growth, community growth for token projects
+Meta title: Growth Engine | SpudBlocks Traction Systems for Token Launches
+Meta description: Build traction for token projects through narrative, campaign systems, community activation, and outcome-driven reporting.
+Required assets: funnel diagram, campaign dashboard mockup, growth charts, testimonial clips, content examples
+Exchange Readiness
+
+Headline: Prepare the project for listings, liquidity conversations, and market entry discipline.
+Subhead: Exchange readiness is not a press release. It is a coordinated operating layer across token structure, disclosures, traction proof, launch mechanics, and partner communication.
+Key sections
+Readiness scorecard
+Required inputs: token utility, vesting logic, compliance posture, market narrative
+Liquidity and listing preparation framework
+Common failure modes before exchange conversations
+CTA to confidential assessment
+CTAs: Request confidential readiness review; View readiness checklist
+SEO keywords: exchange readiness, token listing readiness, token launch advisory, liquidity preparation
+Meta title: Exchange Readiness | SpudBlocks Market Entry Advisory for Token Teams
+Meta description: Assess token project readiness for market entry, exchange conversations, disclosures, and launch discipline.
+Required assets: readiness radar chart, checklist graphic, timeline visual, legal note callouts, partner-process diagram
+Work hub and case-study template
+
+Headline: Proof before promise.
+Subhead: Every case should show the brief, the blockers, the operating plan, and the verified result.
+Key sections
+Filterable case-study grid by problem and stage
+Featured metrics band
+“What we actually changed” section
+Testimonials and artifacts
+Final CTA
+Case-study page structure
+Hero with project type, stage, and 3–5 result numbers
+Situation / challenge
+Scope delivered
+Timeline
+Metrics before vs after
+Key artifacts
+Quote
+CTA
+CTAs: See similar case; Apply for review
+SEO keywords: web3 case studies, token launch case study, crypto growth case study, dapp launch results
+Meta title: Work | SpudBlocks Launch and Growth Case Studies
+Meta description: Review launch, growth, and market-readiness case studies for token projects and Web3 operators.
+Required assets: KPI hero, timeline strip, before/after charts, screenshots, founder quote headshot if permitted, proof-source note
+Who We Serve
+
+Headline: Built for token teams under launch pressure.
+Subhead: SpudBlocks is optimized for pre-TGE founders, early-stage token projects, and exchange or ecosystem stakeholders evaluating market readiness.
+Key sections
+Pre-TGE founders
+Token teams with an active roadmap and sales/launch window
+Exchanges, launch partners, and ecosystem teams
+Qualification criteria: who is and is not a fit
+CTA
+CTAs: See fit criteria; Apply
+SEO keywords: pre-TGE support, token project partner, launch support for exchanges, web3 founder services
+Meta title: Who We Serve | SpudBlocks
+Meta description: See whether SpudBlocks is a fit for your token project, pre-TGE roadmap, or exchange-side market entry initiative.
+Required assets: audience cards, fit/not-fit comparison, process snapshot, optional partner logos
+Method
+
+Headline: The launch system behind the work.
+Subhead: SpudBlocks follows a staged operating model so founders know what gets built, what gets measured, and what gates must be passed before market entry.
+Key sections
+Discovery and readiness audit
+Build and narrative production
+Traction activation
+Readiness and partner prep
+Reporting, handoff, and optional retained support
+CTAs: Download readiness checklist; Apply
+SEO keywords: token launch process, go to market for token projects, web3 launch methodology
+Meta title: Method | The SpudBlocks Launch System
+Meta description: Understand the step-by-step operating model SpudBlocks uses to build, grow, and prepare token projects for market entry.
+Required assets: step diagram, phased checkpoints, sample dashboard image, FAQ accordion
+Insights hub and article template
+
+Headline: Practical launch intelligence for token teams.
+Subhead: Publish operator-grade content on token launch readiness, growth mechanics, market structure, and founder mistakes before TGE.
+Key sections
+Featured flagship guide
+Category filters
+Recent articles
+Downloadable checklist or scorecard
+Newsletter capture
+Article template
+Clear H1
+TL;DR summary block
+Diagrams or charts
+In-article CTA
+Author bio and disclosure note if compensation relationships exist
+CTAs: Read flagship guide; Get launch checklist
+SEO keywords: token launch guide, pre-TGE checklist, exchange readiness guide, web3 growth playbook
+Meta title: Insights | SpudBlocks Launch Guides and Market Notes
+Meta description: Operator-grade guides on token launch readiness, growth systems, market entry, and pre-TGE strategy.
+Required assets: article cover templates, diagram library, quote styles, download card, author component
+About
+
+Headline: Operators for launch-stage token projects.
+Subhead: The About page should establish SpudBlocks as an execution partner with market understanding, not as a generic creative studio.
+Key sections
+Mission and stance
+Team and operating network
+Why SpudBlocks exists
+Selected relationships or ecosystem footprint
+CTA
+CTAs: Apply for review; See work
+SEO keywords: about SpudBlocks, web3 launch partner, token project operator
+Meta title: About | SpudBlocks
+Meta description: Learn how SpudBlocks helps token projects move from pre-TGE planning to traction and exchange readiness.
+Required assets: founder/team portraits, network map, timeline, manifesto panel, optional media mentions
+Apply
+
+Headline: Apply for a Launch Readiness Review.
+Subhead: Use the application page to qualify serious projects, route best-fit opportunities to a call, and create a clean handoff into CRM.
+Key sections
+Fit criteria summary
+Application form
+What happens next
+FAQ on timing and confidentiality
+Alternative CTA for non-fit teams
+CTAs: Submit application; Download checklist if not ready
+SEO keywords: apply for token launch support, launch readiness review, web3 advisory application
+Meta title: Apply | SpudBlocks Launch Readiness Review
+Meta description: Apply for a launch readiness review for your token project or pre-TGE roadmap.
+Required assets: friction-light form UI, progress indicator, confidentiality note, calendar embed state, thank-you-state module
+Legal
+
+Headline: Disclosures, policies, and compensation transparency.
+Subhead: Put category-sensitive disclosures one click away from every token-related page and directly below high-risk claims or token-compensation references.
+Key sections
+General site disclaimer
+Digital-asset and no-advice disclaimer
+Token allocation/conflict disclosure
+Privacy and terms
+Contact for compliance/legal requests
+CTAs: Read disclosures; Contact for legal/compliance queries
+SEO keywords: token allocation disclosure, web3 advisory disclaimer, privacy policy, terms
+Meta title: Legal | SpudBlocks Disclosures, Privacy, and Terms
+Meta description: Review SpudBlocks disclosures, privacy policy, terms, and token-compensation transparency.
+Required assets: clean typography only, disclosure callouts, downloadable PDF option for formal disclosures, version history stamp
+UX, motion, trust, and lead capture
+The benchmark set strongly favors clear proof, simple application flows, and visible credibility devices over ornamental design. Republic, Fjord, Impossible, Coinbound, MarketAcross, TokenMinds, and CV Labs all foreground metrics, partner logos, proofs of execution, and a plain “apply/book” action. SpudBlocks should therefore use motion to clarify the operating system, not to decorate the page. 
+
+Visual direction
+
+Use a dark, high-contrast interface with restrained luminous accents.
+Avoid generic “metaverse” imagery. Use diagrams, UI fragments, scorecards, charts, and abstract network motion.
+Typography should feel operational rather than futuristic: strong grotesk/sans headline, highly readable body text, generous spacing, tight line lengths.
+Hero animation storyboards
+
+Storyboard A: Launch Orbit
+Scene 1: disconnected nodes float in low-opacity space
+Scene 2: nodes lock into three labeled layers — Build, Growth, Readiness
+Scene 3: a signal line travels through the layers and resolves into the main CTA
+Sample Lottie name: sb-hero-launch-orbit.json
+Storyboard B: Liquidity Bridge
+Scene 1: token blocks form from the left
+Scene 2: blocks pass through a compliance/checkpoint gate
+Scene 3: blocks move into a market-grid/orderbook visual on the right
+Sample Lottie name: sb-liquidity-bridge.json
+Storyboard C: Readiness Radar
+Scene 1: empty radar/spider chart
+Scene 2: dimensions fill in one by one — Product, Narrative, Community, Sale Ops, Market Entry
+Scene 3: score resolves into CTA
+Sample Lottie name: sb-readiness-radar.json
+Animation specs
+
+Use SVG for simple loops and icon transitions.
+Use Lottie for hero scenes only; keep first-view motion payload light.
+Keep entrance motion subtle: 12–24px translate, 180–280ms duration, opacity-led where possible.
+Count-up KPIs should run once on first view only.
+Scroll-triggered motion should stagger cards by 40–60ms, never block reading, and degrade to static content for lower-powered devices.
+Respect reduced-motion preferences using prefers-reduced-motion; when motion is reduced, replace panning, scaling, or orbit movement with simple opacity changes or static states. 
+Microinteractions
+
+Navigation link underline grows from left to right on hover/focus.
+CTA buttons use a subtle arrow-shift or glow, not a pulse loop.
+KPI cards brighten on hover, but no tilt beyond a very slight transform.
+Case-study chart tooltips appear on hover/focus with keyboard parity.
+Accordion FAQs animate height minimally and keep state persistent on back navigation.
+Loading states
+
+Use skeleton cards for case grids and insights lists.
+For forms, validate inline before submission, then show a clear progress state.
+For media-heavy sections, lazy-load assets below the fold.
+For KPI views, render text first and animate only after content is visible.
+Never let hero animation delay headline paint.
+Performance targets
+
+At minimum, the site should meet the “good” Core Web Vitals thresholds: LCP at or under 2.5 seconds, INP at or under 200 milliseconds, and CLS at or under 0.1. For the Home, Solutions, and Apply pages, set an internal goal stricter than that: keep first meaningful content under roughly 1.8–2.0 seconds on modern mobile. 
+
+Trust and conversion stack
+
+Because benchmark sites prove themselves with numbers, logos, awards, outcomes, and process clarity, SpudBlocks should assemble a trust system in this order. 
+
+Proof bar
+Use only verified numbers. Good categories:
+launches supported
+capital/raise assisted
+KYC completion or qualified participant rate
+countries reached
+community or application growth
+exchange/e.cosystem relationships
+Logo wall
+Split into three rows if possible:
+clients
+partners/ecosystem relationships
+media or conference exposure
+Testimonials
+Use three types:
+founder/operator quote
+technical/product quote
+partner/exchange/ecosystem quote
+Case studies
+Each case should show:
+stage
+problem
+scope
+3–5 hard metrics
+timeline
+artifact proof
+Data visualization modules
+readiness radar chart
+before/after funnel or community chart
+raise participation chart
+geography heat map
+vesting / token allocation waterfall explainer
+Awards and achievements
+
+If SpudBlocks does not yet have earned awards, do not imitate Coinbound or TokenMinds by filling the page with generic badges. Those firms can support awards with broader market proof; an early-stage operator is better served by verified achievements, partner relationships, case metrics, and selective testimonials. Use “Selected outcomes” before “Awards.” 
+
+Legal and disclaimer copy templates
+
+Modeled on the public approaches used by CoinList, Republic, and Animoca, SpudBlocks should publish plain-language disclosure modules anywhere token allocations, exchange access, or market-entry support are mentioned. 
+
+General site disclaimer template
+Information on this website is provided for informational purposes only and does not constitute legal, tax, investment, exchange-listing, or financial advice. Digital-asset projects involve significant execution, regulatory, market, and security risk. SpudBlocks does not guarantee fundraising outcomes, token performance, exchange listings, liquidity depth, or market adoption.
+
+Token compensation disclosure template
+In some client engagements, SpudBlocks may receive compensation in the form of cash fees, token allocations, vested token rights, or other incentive arrangements. Where such arrangements exist, they may create conflicts of interest. Relevant disclosures will be made on applicable case studies, articles, and marketing materials.
+
+Exchange pathway disclosure template
+Any reference to exchange readiness, exchange introductions, or market-entry support describes advisory and preparation services only. Final listing decisions, compliance determinations, and market-access approvals are made solely by the relevant third-party venues and counterparties.
+
+Token holdings / mention disclosure template
+References to projects, protocols, or digital assets on this site are illustrative unless otherwise stated. Mention of a project or token does not imply endorsement, current ownership, future ownership, or a recommendation to purchase, sell, or hold any asset.
+
+These should be reviewed by counsel before publication.
+
+Lead capture flow
+
+The public benchmark set suggests a clear pattern: serious firms ask visitors to apply, book a call, join a waitlist, or request a proposal, and the forms usually collect company, contact, service need, and problem context. MarketAcross asks for name, company, email, Telegram, service interest, and message; TokenMinds asks for name, email, company, and requested service; Republic routes launch leads into an application path; Coinbound pushes “Book A Call,” “Get A Proposal,” and email-gated assets. SpudBlocks should combine those patterns into a two-step qualification flow. 
+
+Recommended application form fields
+
+Full name
+Work email
+Company / project name
+Role / decision-making authority
+Website / deck URL
+Project stage
+Target TGE month
+Chain / ecosystem
+Current product status
+Community size / active users / waitlist
+Target raise or sale structure
+KYC/compliance status
+Primary need
+Desired outcome in next 90 days
+Budget range or token-compensation openness
+Preferred contact channel
+Additional context
+Qualification logic
+
+Fast-track to booking
+decision-maker
+live or near-live product
+clear TGE or launch window
+meaningful need across build/growth/readiness
+budget or token-compensation fit
+Manual review
+strong team, unclear timing
+no current traction but strong partner backing
+exchange-side or confidential infra discussion
+Not-yet-ready nurture
+idea-stage, no roadmap
+vague token logic
+no decision-maker on form
+zero urgency and no defined objective
+Booking flow
+
+Visitor clicks primary CTA.
+Visitor completes qualification form.
+If qualified, immediate thank-you page reveals scheduler.
+If not yet qualified, thank-you page offers:
+launch readiness checklist
+flagship guide
+invitation to reapply later
+CRM tags lead by stage, solution need, and urgency.
+Three-step email sequence
+
+Timing	Subject	Purpose	Primary CTA
+Immediate	Your launch review request is in	confirm receipt, recap next steps, reinforce fit criteria	Complete booking
+Day 2	The 5 issues delaying token launches before TGE	send flagship insight, show proof, build authority	View launch checklist
+Day 5	Should we reserve a strategy slot for your launch window?	create urgency for serious teams, invite reply with deck/context	Book call or reply confidentially
+
+Mockup suggestions
+
+Homepage desktop mockup: left-aligned thesis and CTA stack; right-side animated network; proof bar directly beneath hero; logos below fold.
+Solution page mockup: sticky side navigation with section progress; central content column; right rail with mini scorecard and CTA.
+Case-study mockup: hero KPI band, timeline strip, challenge/scope/result split, one chart per outcome cluster, closing testimonial and CTA.
+SEO, accessibility, analytics, and stack
+A launch-stage Web3 site still needs disciplined search and accessibility fundamentals. The good news is that the official guidance from Google, WCAG, and modern product tooling aligns cleanly with a high-converting site architecture. 
+
+SEO recommendations
+
+Keep page titles aligned with the visible page title and avoid multiple competing visual H1-like signals.
+Write meta descriptions as short pitches, not keyword stuffing.
+Use crawlable internal links throughout the content stack.
+Generate XML sitemaps and submit them through Search Console.
+Add structured data:
+Organization on About / Home
+BreadcrumbList on interior pages
+FAQPage where true FAQs exist
+Build internal links from insights pages into solution pages and case studies.
+Keep each solution page paired to one primary keyword cluster plus 2–3 supporting variants. 
+Accessibility recommendations
+
+Use WCAG 2.2 AA as baseline. The standard is organized around perceivable, operable, understandable, and robust principles; it also adds newer guidance such as stronger focus appearance and minimum pointer target size. For SpudBlocks, that means visible focus states, keyboard-safe interactive components, sufficient contrast, semantic headings, motion controls, and touch targets that are not frustrating on mobile. 
+
+Recommended accessibility acceptance criteria
+
+All primary nav, tabs, accordions, and carousels keyboard-operable
+Focus styles at strong visual contrast
+Click/tap targets at or above comfortable minimum sizing
+Charts accompanied by text summaries
+Form errors announced and positioned near fields
+Motion reduced when user preference demands it
+Decorative animations marked appropriately, meaningful animations explained in text
+Tech stack recommendations
+
+For this use case, the cleanest stack is:
+
+Frontend: React + Next.js
+React’s component model supports reusable page systems, and Next.js is built to add full-stack and performance optimizations on top of React. 
+Styling: Tailwind CSS
+Tailwind’s utility-first model is well-suited to building a reusable marketing-site system with consistent spacing, states, and responsive behavior. 
+CMS: Sanity
+Sanity’s official positioning as a developer-friendly headless CMS with a customizable Studio makes it a good fit for case studies, insight articles, testimonials, disclosures, and modular page sections. 
+Analytics: GA4 + PostHog
+Use GA4 for acquisition and conversion reporting; use PostHog for autocapture, session replay, and funnel/product-style behavioral analysis. Google’s docs support enhanced measurement and recommended events, while PostHog documents autocapture and replay as first-class features. 
+Optional secondary behavioral layer: Microsoft Clarity
+Useful if SpudBlocks wants a free visual heatmap/session layer alongside the core stack. 
+Accessibility standard reference: World Wide Web Consortium WCAG 2.2
+Use as the QA baseline. 
+Suggested event taxonomy
+
+view_home_hero
+click_primary_cta
+click_secondary_cta
+view_solution_page
+view_case_study
+start_application
+submit_application
+qualified_application
+book_strategy_call
+download_checklist
+subscribe_insights
+Team prompts
+
+Copywriter prompt
+
+Write in operator-grade plain English for pre-TGE founders. Avoid hype, vagueness, and crypto clichés. Every page should answer: what SpudBlocks does, who it is for, what changes after engagement, and why the reader should trust it.
+Target lengths: hero headline 8–12 words, hero subhead 18–30 words, section intros 25–50 words, solution pages 650–900 words, case study intros 60–90 words, CTA buttons 2–4 words.
+
+Designer prompt
+
+Design a dark, high-trust launch-operator website. Prioritize proof bars, diagrams, scorecards, charts, screenshots, and testimonial modules over decorative 3D scenes. Create desktop and mobile versions for Home, one solution page, case-study page, and Apply. Include component states for hover, focus, active, error, loading, reduced motion, and empty state.
+
+Developer prompt
+
+Build the site as CMS-driven modular sections. Support reusable components for hero, KPI bar, logo wall, solution cards, process diagrams, case cards, charts, testimonials, FAQ, forms, and disclosure callouts. Lazy-load below-the-fold animations and all non-critical media. Instrument the core event taxonomy. Ensure all interactive components meet keyboard and reduced-motion requirements.
+
+Layout options, inspiration, and launch plan
+The benchmark set naturally falls into three layout archetypes. Coinbound and MarketAcross are conversion-led. Animoca and Outlier are brand-led. Republic, Fjord, and Impossible are product-led. SpudBlocks should launch with a conversion/product hybrid, not pure brand. 
+
+Layout archetype	Best use case for SpudBlocks	Pros	Cons	Recommendation
+Conversion focus	Immediate deal generation from founders and warm referrals	Fast path to application, strong CTA density, easier funnel optimization, better for outbound traffic	Can feel too sales-led if proof is weak	Best initial launch choice
+Brand focus	Ecosystem authority, investor/partner signaling, media perception	Strong positioning, better long-term prestige, useful for larger partnerships	Often weaker direct conversion, slower clarity for first-time visitors	Add selectively, not as the core layout
+Product focus	Explaining launch infrastructure, process, compliance, readiness	Best for complex offers, strongest for serious founders, easiest to support with diagrams and checklists	Requires disciplined content upkeep	Blend this into the conversion layout
+
+Recommended inspiration sequence
+
+Start design references in this order: Republic Launchpad, Fjord Foundry, Impossible Finance, Coinbound, MarketAcross, TokenMinds, then selectively borrow tone and segmentation from Outlier, CV Labs, and Animoca. That gives SpudBlocks a homepage that feels serious, action-oriented, and operational rather than ornamental. 
+
+Deliverable checklist
+
+Strategy
+positioning statement
+message hierarchy
+sitemap
+funnel and CTA map
+SEO keyword map
+disclosure requirements
+Content
+homepage copy
+solution-page copy
+case-study templates
+who-we-serve copy
+method page
+insights launch guide
+legal/disclosure copy
+Design
+wireframes
+visual system
+component library
+motion prototypes
+chart system
+responsive layouts
+Development
+component implementation
+CMS schemas
+analytics instrumentation
+structured data
+form scoring logic
+scheduler integration
+QA and launch
+accessibility QA
+performance QA
+SEO QA
+redirect map if replacing an old site
+sitemap/Search Console submission
+post-launch dashboard
+two A/B test hypotheses for hero and CTA
+Suggested milestone timeline
+
+May 03
+May 10
+May 17
+May 24
+May 31
+Jun 07
+Positioning and message architecture
+Sitemap and funnel design
+Homepage and solution copy
+Keyword map and disclosure review
+Wireframes
+Case study framework and legal copy
+Insights flagship guide
+Visual system and components
+Motion prototypes
+Frontend build and CMS schemas
+Form flow and analytics instrumentation
+Structured data and SEO implementation
+Accessibility and performance QA
+Content upload and final review
+Launch and monitoring
+Strategy
+Content
+Design
+Development
+QA and Launch
+SpudBlocks website delivery timeline
+
+
+Show code
+Final recommendation
+
+Launch SpudBlocks with a site that looks less like a creative studio and more like a high-trust launch operator: one-line outcome-led promise, hard proof at the top, three tightly productized solution pages, a serious case-study engine, an application-first funnel, and a visible disclosures layer. That is the clearest synthesis of what the best benchmark sites already prove works for this audience. 
