@@ -79,23 +79,35 @@ export default function Contact() {
     },
   });
 
+  const [submitError, setSubmitError] = useState<string | null>(null);
+
   const onSubmit = async (data: FormValues) => {
     setSubmitting(true);
-    await new Promise((r) => setTimeout(r, 600));
-    addContact({
-      name: data.name,
-      email: data.email,
-      phone: "",
-      telegram: data.telegram || "",
-      company: data.company || "",
-      website: data.website || "",
-      stage: data.stage,
-      budget: data.budget,
-      message: data.message,
-    });
-    setSubmitting(false);
-    setSuccess(true);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    setSubmitError(null);
+    try {
+      await addContact({
+        name: data.name,
+        email: data.email,
+        phone: "",
+        telegram: data.telegram || "",
+        company: data.company || "",
+        website: data.website || "",
+        stage: data.stage,
+        budget: data.budget,
+        message: data.message,
+        source: "contact",
+      });
+      setSuccess(true);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } catch (err) {
+      setSubmitError(
+        err instanceof Error
+          ? err.message
+          : "Something went wrong. Please try again or email us directly.",
+      );
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   if (success) {
@@ -297,6 +309,12 @@ export default function Contact() {
                   <FormMessage />
                 </FormItem>
               )} />
+
+              {submitError && (
+                <p className="text-sm text-red-400 border border-red-500/30 bg-red-500/10 rounded px-4 py-3">
+                  {submitError}
+                </p>
+              )}
 
               <Button
                 type="submit"

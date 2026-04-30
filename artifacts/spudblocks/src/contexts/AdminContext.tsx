@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, ReactNode } from "react";
 import { getAdminSession, setAdminSession } from "@/lib/storage";
+import { setAdminToken, clearAdminToken } from "@/lib/api";
 
 const ADMIN_PASSWORD = import.meta.env.VITE_ADMIN_PASSWORD || "spudblocks2024";
 
@@ -17,6 +18,7 @@ export function AdminProvider({ children }: { children: ReactNode }) {
   const login = (password: string): boolean => {
     if (password === ADMIN_PASSWORD) {
       setAdminSession(true);
+      setAdminToken(password);
       setIsAuthenticated(true);
       return true;
     }
@@ -25,6 +27,7 @@ export function AdminProvider({ children }: { children: ReactNode }) {
 
   const logout = () => {
     setAdminSession(false);
+    clearAdminToken();
     setIsAuthenticated(false);
   };
 

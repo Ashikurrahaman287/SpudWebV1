@@ -1,64 +1,92 @@
-import { createContext, useContext, useState, useCallback, type ReactNode } from "react";
 import {
-  getContacts,
-  addContact as storageAddContact,
-  updateContactStatus as storageUpdateStatus,
-  deleteContact as storageDeleteContact,
-  type ContactSubmission,
-} from "@/lib/storage";
+  createContext,
+  useContext,
+  useState,
+  useCallback,
+  useEffect,
+  type ReactNode,
+} from "react";
+import { type ContactSubmission } from "@/lib/storage";
+import {
+  createContactApi,
+  listContactsApi,
+  patchContactStatusApi,
+  deleteContactApi,
+  type CreateContactPayload,
+} from "@/lib/api";
+import { useAdmin } from "./AdminContext";
 
 type ContactsContextType = {
   contacts: ContactSubmission[];
-  addContact: (sub: Omit<ContactSubmission, "id" | "submittedAt" | "status">) => void;
-  updateContactStatus: (id: string, status: ContactSubmission["status"]) => void;
-  deleteContact: (id: string) => void;
-  refresh: () => void;
+  loading: boolean;
+  error: string | null;
+  addContact: (sub: CreateContactPayload) => Promise<void>;
+  updateContactStatus: (
+    id: string,
+    status: ContactSubmission["status"],
+  ) => Promise<void>;
+  deleteContact: (id: string) => Promise<void>;
+  refresh: () => Promise<void>;
 };
 
 const ContactsContext = createContext<ContactsContextType | null>(null);
 
 export function ContactsProvider({ children }: { children: ReactNode }) {
-  const [contacts, setContacts] = useState<ContactSubmission[]>(() => getContacts());
+  const { isAuthenticated } = useAdmin();
+  const [contacts, setContacts] = useState<ContactSubmission[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const refresh = useCallback(() => {
-    setContacts(getContacts());
+  const refresh = useCallback(async () => {
+    if (!isAuthenticated) {
+      setContacts([]);
+      return;
+    }
+    setLoading(true);
+    setError(null);
+    try {
+      const list = await listContactsApi();
+      setContacts(list);
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Failed to load contacts");
+    } finally {
+      setLoading(false);
+    }
+  }, [isAuthenticated]);
+
+  useEffect(() => {
+    void refresh();
+  }, [refresh]);
+
+  const addContact = useCallback(async (sub: CreateContactPayload) => {
+    const created = await createContactApi(sub);
+    setContacts((prev) => [created, ...prev]);
   }, []);
 
-  const addContact = useCallback(
-    (sub: Omit<ContactSubmission, "id" | "submittedAt" | "status">) => {
-      storageAddContact(sub);
-      // Immediately reflect in shared state — no re-read needed
-      setContacts((prev) => [
-        {
-          ...sub,
-          id: Date.now().toString(),
-          submittedAt: new Date().toISOString(),
-          status: "new" as const,
-        },
-        ...prev,
-      ]);
-    },
-    []
-  );
-
   const updateContactStatus = useCallback(
-    (id: string, status: ContactSubmission["status"]) => {
-      storageUpdateStatus(id, status);
-      setContacts((prev) =>
-        prev.map((c) => (c.id === id ? { ...c, status } : c))
-      );
+    async (id: string, status: ContactSubmission["status"]) => {
+      const updated = await patchContactStatusApi(id, status);
+      setContacts((prev) => prev.map((c) => (c.id === id ? updated : c)));
     },
-    []
+    [],
   );
 
-  const deleteContact = useCallback((id: string) => {
-    storageDeleteContact(id);
+  const deleteContact = useCallback(async (id: string) => {
+    await deleteContactApi(id);
     setContacts((prev) => prev.filter((c) => c.id !== id));
   }, []);
 
   return (
     <ContactsContext.Provider
-      value={{ contacts, addContact, updateContactStatus, deleteContact, refresh }}
+      value={{
+        contacts,
+        loading,
+        error,
+        addContact,
+        updateContactStatus,
+        deleteContact,
+        refresh,
+      }}
     >
       {children}
     </ContactsContext.Provider>

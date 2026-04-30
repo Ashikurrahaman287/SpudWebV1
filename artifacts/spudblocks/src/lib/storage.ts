@@ -23,6 +23,7 @@ export type ContactSubmission = {
   stage: string;
   budget: string;
   message: string;
+  source: string;
   submittedAt: string;
   status: "new" | "contacted" | "qualified" | "closed" | "rejected";
 };

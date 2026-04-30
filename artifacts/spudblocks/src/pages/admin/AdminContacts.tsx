@@ -61,7 +61,7 @@ function exportCSV(contacts: ContactSubmission[]) {
 }
 
 export default function AdminContacts() {
-  const { contacts, updateContactStatus, deleteContact, refresh } = useContacts();
+  const { contacts, updateContactStatus, deleteContact, refresh, loading, error } = useContacts();
   const [query, setQuery] = useState("");
   const [filterStatus, setFilterStatus] = useState<string>("all");
   const [confirmDelete, setConfirmDelete] = useState<string | null>(null);
@@ -89,9 +89,9 @@ export default function AdminContacts() {
           </p>
         </div>
         <div className="flex gap-2">
-          <Button variant="ghost" onClick={refresh} className="font-mono uppercase tracking-wider text-xs">
-            <RefreshCw className="w-4 h-4 mr-2" />
-            Refresh
+          <Button variant="ghost" onClick={() => void refresh()} disabled={loading} className="font-mono uppercase tracking-wider text-xs">
+            <RefreshCw className={`w-4 h-4 mr-2 ${loading ? "animate-spin" : ""}`} />
+            {loading ? "Loading..." : "Refresh"}
           </Button>
           <Button
             variant="outline"
@@ -103,6 +103,12 @@ export default function AdminContacts() {
           </Button>
         </div>
       </div>
+
+      {error && (
+        <div className="mb-4 text-sm text-red-400 border border-red-500/30 bg-red-500/10 rounded px-4 py-3">
+          {error}
+        </div>
+      )}
 
       <div className="flex gap-3 mb-4">
         <div className="relative flex-1">

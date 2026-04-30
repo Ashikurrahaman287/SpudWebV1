@@ -20,13 +20,26 @@ Background `#000` / `#05070F`. Headlines use `.sb-headline-shimmer` for animated
 - **Home page** sections: Hero (with launch pipeline strip Idea→Build→Launch→Grow→Liquidity→Exchange), KPI proof bar, "0 → Exchange System" 6-step section (id="system"), trust metrics (CountUp), featured outcomes, testimonials, partners marquee, recognitions, who we serve, qualification CTA.
 
 ### Storage layer (`src/lib/storage.ts`)
+Browser-local storage for content (no backend yet for these):
 - `getCases/saveCase/deleteCase` — case studies (default seed in `data/cases.ts`)
 - `getBlogPosts/saveBlogPost/deleteBlogPost` — blog (initially empty)
 - `getInsights` — legacy insights blog (preserved for backward compat)
-- `getOurSpace`, `getContacts/addContact/updateContactStatus` — full lifecycle: new/contacted/qualified/closed/rejected
+- `getOurSpace` — Our Space items
 - `getWebsiteContent/saveWebsiteContent` — homepage editable copy (hero + metrics + 6 system steps)
 - `getMediaLibrary/addMediaItem` — quick-access URL list
 - `getSEO/saveSEO` — per-page meta. Use `useSEO(pageKey, fallback)` from `src/lib/seo.ts` to apply.
+
+### Contact submissions — backend-backed (NOT localStorage)
+Contact and Apply form submissions go through `src/lib/api.ts` to the api-server, which persists them in the `contact_submissions` Postgres table. This was migrated from localStorage so submissions actually reach the admin panel from a different device/browser.
+- POST `/api/contacts` — public, creates a submission
+- GET `/api/contacts` — admin (header `x-admin-token: <password>`)
+- PATCH `/api/contacts/{id}` — admin, updates status
+- DELETE `/api/contacts/{id}` — admin
+- The admin token is the same value as `VITE_ADMIN_PASSWORD` (default `spudblocks2024`) and the server expects env `ADMIN_PASSWORD` to match. The browser stores the token in localStorage as `sb_admin_token` after login.
+- DB schema: `lib/db/src/schema/contacts.ts`. Routes: `artifacts/api-server/src/routes/contacts.ts`.
+
+### Email notifications
+The api-server has a SendGrid notification helper in `src/lib/email.ts` that fires after each new contact submission. It is **dormant by default** — it only sends if all three env vars are set: `SENDGRID_API_KEY`, `SENDGRID_FROM_EMAIL`, and `CONTACT_NOTIFICATION_EMAIL`. The user dismissed the SendGrid integration once; if they revisit email, propose Resend or re-propose SendGrid.
 
 ### Contact form
 New fields beyond name/email: telegram (or whatsapp), company, project website, project stage (Idea/MVP/Pre-TGE/Launched/Looking for Listing), budget bracket, message. Stored as `ContactSubmission` and exported via CSV from admin.

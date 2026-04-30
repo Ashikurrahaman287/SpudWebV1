@@ -50,18 +50,35 @@ export default function Apply() {
     }
   });
 
+  const [submitError, setSubmitError] = useState<string | null>(null);
+
   const onSubmit = async (data: FormValues) => {
     setIsSubmitting(true);
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    addContact({
-      name: data.fullName,
-      email: data.email,
-      phone: "",
-      message: `Project: ${data.projectName} (${data.role})\nURL: ${data.url}\nStage: ${data.stage} | TGE: ${data.tgeTiming} | Chain: ${data.chain}\nProduct: ${data.productStatus} | Community: ${data.communitySize}\nSale: ${data.saleStructure} | KYC: ${data.kycStatus}\nNeed: ${data.primaryNeed} | Budget: ${data.budget}\nOutcome: ${data.outcome}\nContact: ${data.contactChannel}\nContext: ${data.additionalContext || "N/A"}`,
-    });
-    setIsSubmitting(false);
-    setIsSuccess(true);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    setSubmitError(null);
+    try {
+      await addContact({
+        name: data.fullName,
+        email: data.email,
+        phone: "",
+        telegram: "",
+        company: data.projectName,
+        website: data.url,
+        stage: data.stage,
+        budget: data.budget,
+        message: `Project: ${data.projectName} (${data.role})\nURL: ${data.url}\nStage: ${data.stage} | TGE: ${data.tgeTiming} | Chain: ${data.chain}\nProduct: ${data.productStatus} | Community: ${data.communitySize}\nSale: ${data.saleStructure} | KYC: ${data.kycStatus}\nNeed: ${data.primaryNeed} | Budget: ${data.budget}\nOutcome: ${data.outcome}\nContact: ${data.contactChannel}\nContext: ${data.additionalContext || "N/A"}`,
+        source: "apply",
+      });
+      setIsSuccess(true);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } catch (err) {
+      setSubmitError(
+        err instanceof Error
+          ? err.message
+          : "Something went wrong. Please try again or email us directly.",
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (isSuccess) {
@@ -296,7 +313,12 @@ export default function Apply() {
                 )} />
               </div>
 
-              <div className="pt-8 border-t border-border">
+              <div className="pt-8 border-t border-border space-y-4">
+                {submitError && (
+                  <p className="text-sm text-red-400 border border-red-500/30 bg-red-500/10 rounded px-4 py-3">
+                    {submitError}
+                  </p>
+                )}
                 <Button type="submit" size="lg" className="w-full sm:w-auto h-14 px-8 font-mono uppercase tracking-wider text-sm" disabled={isSubmitting}>
                   {isSubmitting ? "Submitting securely..." : "Submit Application"}
                 </Button>

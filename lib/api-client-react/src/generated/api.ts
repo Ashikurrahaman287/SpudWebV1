@@ -5,18 +5,26 @@
  * API specification
  * OpenAPI spec version: 0.1.0
  */
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import type {
+  MutationFunction,
   QueryFunction,
   QueryKey,
+  UseMutationOptions,
+  UseMutationResult,
   UseQueryOptions,
   UseQueryResult,
 } from "@tanstack/react-query";
 
-import type { HealthStatus } from "./api.schemas";
+import type {
+  ContactSubmission,
+  CreateContactInput,
+  HealthStatus,
+  UpdateStatusInput,
+} from "./api.schemas";
 
 import { customFetch } from "../custom-fetch";
-import type { ErrorType } from "../custom-fetch";
+import type { ErrorType, BodyType } from "../custom-fetch";
 
 type AwaitedInput<T> = PromiseLike<T> | T;
 
@@ -99,3 +107,335 @@ export function useHealthCheck<
 
   return { ...query, queryKey: queryOptions.queryKey };
 }
+
+/**
+ * @summary Submit a contact form entry
+ */
+export const getCreateContactUrl = () => {
+  return `/api/contacts`;
+};
+
+export const createContact = async (
+  createContactInput: CreateContactInput,
+  options?: RequestInit,
+): Promise<ContactSubmission> => {
+  return customFetch<ContactSubmission>(getCreateContactUrl(), {
+    ...options,
+    method: "POST",
+    headers: { "Content-Type": "application/json", ...options?.headers },
+    body: JSON.stringify(createContactInput),
+  });
+};
+
+export const getCreateContactMutationOptions = <
+  TError = ErrorType<void>,
+  TContext = unknown,
+>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<typeof createContact>>,
+    TError,
+    { data: BodyType<CreateContactInput> },
+    TContext
+  >;
+  request?: SecondParameter<typeof customFetch>;
+}): UseMutationOptions<
+  Awaited<ReturnType<typeof createContact>>,
+  TError,
+  { data: BodyType<CreateContactInput> },
+  TContext
+> => {
+  const mutationKey = ["createContact"];
+  const { mutation: mutationOptions, request: requestOptions } = options
+    ? options.mutation &&
+      "mutationKey" in options.mutation &&
+      options.mutation.mutationKey
+      ? options
+      : { ...options, mutation: { ...options.mutation, mutationKey } }
+    : { mutation: { mutationKey }, request: undefined };
+
+  const mutationFn: MutationFunction<
+    Awaited<ReturnType<typeof createContact>>,
+    { data: BodyType<CreateContactInput> }
+  > = (props) => {
+    const { data } = props ?? {};
+
+    return createContact(data, requestOptions);
+  };
+
+  return { mutationFn, ...mutationOptions };
+};
+
+export type CreateContactMutationResult = NonNullable<
+  Awaited<ReturnType<typeof createContact>>
+>;
+export type CreateContactMutationBody = BodyType<CreateContactInput>;
+export type CreateContactMutationError = ErrorType<void>;
+
+/**
+ * @summary Submit a contact form entry
+ */
+export const useCreateContact = <
+  TError = ErrorType<void>,
+  TContext = unknown,
+>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<typeof createContact>>,
+    TError,
+    { data: BodyType<CreateContactInput> },
+    TContext
+  >;
+  request?: SecondParameter<typeof customFetch>;
+}): UseMutationResult<
+  Awaited<ReturnType<typeof createContact>>,
+  TError,
+  { data: BodyType<CreateContactInput> },
+  TContext
+> => {
+  return useMutation(getCreateContactMutationOptions(options));
+};
+
+/**
+ * @summary List all contact submissions (admin)
+ */
+export const getListContactsUrl = () => {
+  return `/api/contacts`;
+};
+
+export const listContacts = async (
+  options?: RequestInit,
+): Promise<ContactSubmission[]> => {
+  return customFetch<ContactSubmission[]>(getListContactsUrl(), {
+    ...options,
+    method: "GET",
+  });
+};
+
+export const getListContactsQueryKey = () => {
+  return [`/api/contacts`] as const;
+};
+
+export const getListContactsQueryOptions = <
+  TData = Awaited<ReturnType<typeof listContacts>>,
+  TError = ErrorType<void>,
+>(options?: {
+  query?: UseQueryOptions<
+    Awaited<ReturnType<typeof listContacts>>,
+    TError,
+    TData
+  >;
+  request?: SecondParameter<typeof customFetch>;
+}) => {
+  const { query: queryOptions, request: requestOptions } = options ?? {};
+
+  const queryKey = queryOptions?.queryKey ?? getListContactsQueryKey();
+
+  const queryFn: QueryFunction<Awaited<ReturnType<typeof listContacts>>> = ({
+    signal,
+  }) => listContacts({ signal, ...requestOptions });
+
+  return { queryKey, queryFn, ...queryOptions } as UseQueryOptions<
+    Awaited<ReturnType<typeof listContacts>>,
+    TError,
+    TData
+  > & { queryKey: QueryKey };
+};
+
+export type ListContactsQueryResult = NonNullable<
+  Awaited<ReturnType<typeof listContacts>>
+>;
+export type ListContactsQueryError = ErrorType<void>;
+
+/**
+ * @summary List all contact submissions (admin)
+ */
+
+export function useListContacts<
+  TData = Awaited<ReturnType<typeof listContacts>>,
+  TError = ErrorType<void>,
+>(options?: {
+  query?: UseQueryOptions<
+    Awaited<ReturnType<typeof listContacts>>,
+    TError,
+    TData
+  >;
+  request?: SecondParameter<typeof customFetch>;
+}): UseQueryResult<TData, TError> & { queryKey: QueryKey } {
+  const queryOptions = getListContactsQueryOptions(options);
+
+  const query = useQuery(queryOptions) as UseQueryResult<TData, TError> & {
+    queryKey: QueryKey;
+  };
+
+  return { ...query, queryKey: queryOptions.queryKey };
+}
+
+/**
+ * @summary Update a submission's status (admin)
+ */
+export const getPatchContactStatusUrl = (id: string) => {
+  return `/api/contacts/${id}`;
+};
+
+export const patchContactStatus = async (
+  id: string,
+  updateStatusInput: UpdateStatusInput,
+  options?: RequestInit,
+): Promise<ContactSubmission> => {
+  return customFetch<ContactSubmission>(getPatchContactStatusUrl(id), {
+    ...options,
+    method: "PATCH",
+    headers: { "Content-Type": "application/json", ...options?.headers },
+    body: JSON.stringify(updateStatusInput),
+  });
+};
+
+export const getPatchContactStatusMutationOptions = <
+  TError = ErrorType<void>,
+  TContext = unknown,
+>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<typeof patchContactStatus>>,
+    TError,
+    { id: string; data: BodyType<UpdateStatusInput> },
+    TContext
+  >;
+  request?: SecondParameter<typeof customFetch>;
+}): UseMutationOptions<
+  Awaited<ReturnType<typeof patchContactStatus>>,
+  TError,
+  { id: string; data: BodyType<UpdateStatusInput> },
+  TContext
+> => {
+  const mutationKey = ["patchContactStatus"];
+  const { mutation: mutationOptions, request: requestOptions } = options
+    ? options.mutation &&
+      "mutationKey" in options.mutation &&
+      options.mutation.mutationKey
+      ? options
+      : { ...options, mutation: { ...options.mutation, mutationKey } }
+    : { mutation: { mutationKey }, request: undefined };
+
+  const mutationFn: MutationFunction<
+    Awaited<ReturnType<typeof patchContactStatus>>,
+    { id: string; data: BodyType<UpdateStatusInput> }
+  > = (props) => {
+    const { id, data } = props ?? {};
+
+    return patchContactStatus(id, data, requestOptions);
+  };
+
+  return { mutationFn, ...mutationOptions };
+};
+
+export type PatchContactStatusMutationResult = NonNullable<
+  Awaited<ReturnType<typeof patchContactStatus>>
+>;
+export type PatchContactStatusMutationBody = BodyType<UpdateStatusInput>;
+export type PatchContactStatusMutationError = ErrorType<void>;
+
+/**
+ * @summary Update a submission's status (admin)
+ */
+export const usePatchContactStatus = <
+  TError = ErrorType<void>,
+  TContext = unknown,
+>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<typeof patchContactStatus>>,
+    TError,
+    { id: string; data: BodyType<UpdateStatusInput> },
+    TContext
+  >;
+  request?: SecondParameter<typeof customFetch>;
+}): UseMutationResult<
+  Awaited<ReturnType<typeof patchContactStatus>>,
+  TError,
+  { id: string; data: BodyType<UpdateStatusInput> },
+  TContext
+> => {
+  return useMutation(getPatchContactStatusMutationOptions(options));
+};
+
+/**
+ * @summary Delete a submission (admin)
+ */
+export const getDeleteContactUrl = (id: string) => {
+  return `/api/contacts/${id}`;
+};
+
+export const deleteContact = async (
+  id: string,
+  options?: RequestInit,
+): Promise<void> => {
+  return customFetch<void>(getDeleteContactUrl(id), {
+    ...options,
+    method: "DELETE",
+  });
+};
+
+export const getDeleteContactMutationOptions = <
+  TError = ErrorType<void>,
+  TContext = unknown,
+>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<typeof deleteContact>>,
+    TError,
+    { id: string },
+    TContext
+  >;
+  request?: SecondParameter<typeof customFetch>;
+}): UseMutationOptions<
+  Awaited<ReturnType<typeof deleteContact>>,
+  TError,
+  { id: string },
+  TContext
+> => {
+  const mutationKey = ["deleteContact"];
+  const { mutation: mutationOptions, request: requestOptions } = options
+    ? options.mutation &&
+      "mutationKey" in options.mutation &&
+      options.mutation.mutationKey
+      ? options
+      : { ...options, mutation: { ...options.mutation, mutationKey } }
+    : { mutation: { mutationKey }, request: undefined };
+
+  const mutationFn: MutationFunction<
+    Awaited<ReturnType<typeof deleteContact>>,
+    { id: string }
+  > = (props) => {
+    const { id } = props ?? {};
+
+    return deleteContact(id, requestOptions);
+  };
+
+  return { mutationFn, ...mutationOptions };
+};
+
+export type DeleteContactMutationResult = NonNullable<
+  Awaited<ReturnType<typeof deleteContact>>
+>;
+
+export type DeleteContactMutationError = ErrorType<void>;
+
+/**
+ * @summary Delete a submission (admin)
+ */
+export const useDeleteContact = <
+  TError = ErrorType<void>,
+  TContext = unknown,
+>(options?: {
+  mutation?: UseMutationOptions<
+    Awaited<ReturnType<typeof deleteContact>>,
+    TError,
+    { id: string },
+    TContext
+  >;
+  request?: SecondParameter<typeof customFetch>;
+}): UseMutationResult<
+  Awaited<ReturnType<typeof deleteContact>>,
+  TError,
+  { id: string },
+  TContext
+> => {
+  return useMutation(getDeleteContactMutationOptions(options));
+};
